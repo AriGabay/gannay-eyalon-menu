@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3030/api/gannay-eylon/category';
+const BASE_URL = 'https://api.c-g1.com/api/gannay-eylon/category';
 
 export const getCategoriesRequest = async () => {
   try {
