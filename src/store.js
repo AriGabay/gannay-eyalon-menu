@@ -34,7 +34,6 @@ const rootReducer = (state = initialState, action) => {
       const count = countProducts(action.payload);
       return { ...state, eventData: action.payload, productsCount: count };
     case 'REMOVE_PRODUCT_EVENT_DATA':
-      console.log('action.payload');
       const { product } = action.payload;
       delete state.eventData[product.categoryId][product.id];
       if (!Object.keys(state.eventData[product.categoryId]).length) {

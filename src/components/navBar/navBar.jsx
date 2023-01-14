@@ -23,7 +23,6 @@ export default function NavBar({ setEventListIsOpen }) {
     <div className="nav-bar" style={{ color: '#f5efdf' }}>
       {categories.length > 0 &&
         categories.map((categoryy) => {
-          console.log('category', category);
           return (
             <div
               className={
