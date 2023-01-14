@@ -1,0 +1,21 @@
+.event-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.event-details-container {
+  width: 80%;
+  border-radius: 10px;
+  padding: 25px 0px;
+}
+.event-details-contant {
+  max-width: 50%;
+  margin: 0 auto;
+}
+.logo-img {
+  margin: 0 auto;
+  max-width: 100%;
+}
+.svg-logo {
+  fill: #f4eddc;
+}

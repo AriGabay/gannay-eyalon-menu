@@ -1,0 +1,103 @@
+.menu {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  /* grid-template-columns: fit-content(30%) fit-content(30%) fit-content(30%); */
+  /* grid-template-columns: auto auto auto; */
+  grid-template-rows: auto;
+  gap: 15px 20px;
+  /* padding-right: 10%; */
+  color: whitesmoke;
+  padding-left: 10%;
+}
+.product {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 1.1fr 0.7fr;
+  gap: 0px 0px;
+  align-items: center;
+  max-width: 270px;
+  border-radius: 10px;
+  min-height: 225px;
+  cursor: pointer;
+}
+.product-name {
+  width: calc(100% - 10px);
+  justify-self: center;
+  align-self: center;
+  grid-area: 2 / 1 / 3 / 2;
+  font-weight: 700;
+  /* margin-right: 10px; */
+  /* margin-bottom: 10px; */
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.product-description {
+  text-align: center;
+  justify-self: center;
+  align-self: end;
+  grid-area: 2 / 1 / 3 / 2;
+  text-overflow: ellipsis;
+  white-space: pre;
+  overflow: hidden;
+  width: calc(100% - 10px);
+}
+.product-img-container {
+  height: 150px;
+  margin-bottom: 10px;
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: 1 / 1 / 2 / 2;
+  /* justify-self: center; */
+}
+.product-plus {
+  justify-self: end;
+  align-self: flex-end;
+  margin-right: 10px;
+}
+.product-img {
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.menu-type-title {
+  color: #f5efdf;
+  text-align: start;
+  /* padding-right: 10%; */
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 992px) {
+  /* .product-img-container {
+    height: 135px;
+  }
+  .product {
+    max-height: 180px;
+  } */
+}
+
+@media only screen and (max-width: 880px) {
+  .menu {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* grid-template-columns: fit-content(20%) fit-content(20%) fit-content(20%); */
+  }
+  .product-img-container {
+    height: 130px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .menu {
+    /* grid-template-columns: fit-content(40%) fit-content(40%); */
+  }
+}
+
+@media only screen and (max-width: 512px) {
+  .product-with-add-btn {
+    margin: 0 auto;
+  }
+}
