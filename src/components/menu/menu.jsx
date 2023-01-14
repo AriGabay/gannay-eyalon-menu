@@ -15,6 +15,7 @@ export default function Menu() {
 
   useEffect(() => {
     getProductsList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const onClickProduct = (product) => {
     dispatch({

@@ -91,9 +91,6 @@
   }
 }
 @media only screen and (max-width: 650px) {
-  .menu {
-    /* grid-template-columns: fit-content(40%) fit-content(40%); */
-  }
 }
 
 @media only screen and (max-width: 512px) {
