@@ -2,7 +2,7 @@ import './modal.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddBtn from '../addBtn/addBtn';
-import { addToEvent, countProducts } from '../../services/cart-service';
+import { addToEvent } from '../../services/cart-service';
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -11,8 +11,6 @@ export default function Modal() {
     dispatch({ type: 'SET_MODAL_IS_OPEN', payload: false });
   const addToEventBtn = () => {
     const eventData = addToEvent(selected);
-    // const count = countProducts();
-    // dispatch({ type: 'SET_PRODUCTS_COUNT', payload: count });
     dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventData } });
     setTimeout(() => closeModal(), 1000);
   };
