@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../menu/menu.css';
 import RemoveBtn from '../removeBtn/removeBtn';
 import { removeFromEvent } from '../../services/cart-service';
+import { ImageCloud } from '../ImageCloud/ImageCloud';
 
 export default function EventList() {
   const eventData = useSelector((state) => state.eventData);
@@ -50,11 +51,16 @@ export default function EventList() {
                   {products[product].description}
                 </div>
                 <div className="product-img-container">
-                  <img
+                  <ImageCloud
+                    alt={products[product].productName}
+                    imageId={products[product]?.imgUrl}
+                    ClassName="product-img"
+                  />
+                  {/* <img
                     className="product-img"
                     src={`${products[product]?.imgUrl}`}
                     alt={`${products[product].productName}`}
-                  />
+                  /> */}
                 </div>
               </div>
               <RemoveBtn onClick={() => removeBtn(products[product])} />
