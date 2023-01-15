@@ -56,11 +56,6 @@ export default function EventList() {
                     imageId={products[product]?.imgUrl}
                     ClassName="product-img"
                   />
-                  {/* <img
-                    className="product-img"
-                    src={`${products[product]?.imgUrl}`}
-                    alt={`${products[product].productName}`}
-                  /> */}
                 </div>
               </div>
               <RemoveBtn onClick={() => removeBtn(products[product])} />
