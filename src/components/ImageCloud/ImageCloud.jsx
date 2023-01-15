@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AdvancedImage, responsive, placeholder } from '@cloudinary/react';
+import { AdvancedImage, placeholder, lazyload } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
-import { thumbnail } from '@cloudinary/url-gen/actions/resize';
+import { quality } from '@cloudinary/url-gen/actions/delivery';
 
 export function ImageCloud({
   alt,
@@ -29,7 +29,7 @@ export function ImageCloud({
     maxWidth = 100;
     maxHeight = 250;
   }
-  myImage.resize(thumbnail().width(200).height(200));
+  myImage.delivery(quality('auto:best'));
 
   return (
     myImage && (
@@ -37,7 +37,10 @@ export function ImageCloud({
         alt={alt}
         className={ClassName}
         cldImg={myImage}
-        plugins={[responsive({ steps: 50 }), placeholder({ mode: 'blur' })]}
+        plugins={[
+          lazyload({ rootMargin: '10px 20px 10px 30px', threshold: 0.25 }),
+          placeholder({ mode: 'blur' }),
+        ]}
       />
     )
   );

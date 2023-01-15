@@ -79,6 +79,7 @@
   justify-self: start;
   align-self: start;
   grid-area: description-seleted;
+  min-width: 100%;
 }
 
 .category-name {
