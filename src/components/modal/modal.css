@@ -64,6 +64,10 @@
   align-self: stretch;
   grid-area: image-selected;
   height: 150px;
+  min-width: 85%;
+}
+.image-selected img {
+  min-width: 100%;
 }
 .img-selected {
   max-height: 100%;
@@ -87,13 +91,13 @@
 .add-btn {
   justify-self: center;
   align-self: center;
-  grid-area: add-btn;
+  /* grid-area: add-btn; */
 }
 
 @media only screen and (max-width: 550px) {
   .modal {
     min-width: 340px;
-    min-height: 400px;
+    /* min-height: 400px; */
   }
 }
 @media only screen and (max-width: 400px) {

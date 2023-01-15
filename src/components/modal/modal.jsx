@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddBtn from '../addBtn/addBtn';
 import { addToEvent } from '../../services/cart-service';
+import { ImageCloud } from '../ImageCloud/ImageCloud';
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -23,11 +24,16 @@ export default function Modal() {
         {Object.keys(selected).length > 0 && (
           <div className="selected">
             <div className="image-selected">
-              <img
+              <ImageCloud
+                alt={selected.productName}
+                ClassName="img-selected"
+                imageId={selected.imgUrl}
+              />
+              {/* <img
                 className="img-selected"
                 alt={selected.productName}
                 src={selected.imgUrl}
-              />
+              /> */}
             </div>
             <div className="description-seleted">{selected.description}</div>
             <div className="category-name">{selected.productName}</div>

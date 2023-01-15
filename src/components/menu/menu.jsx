@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../services/product-service';
 import AddBtn from '../addBtn/addBtn';
+import { ImageCloud } from '../ImageCloud/ImageCloud';
 import './menu.css';
 
 export default function Menu() {
@@ -50,14 +51,14 @@ export default function Menu() {
                         {product.description}
                       </div>
                       <div className="product-img-container">
-                        <img
-                          className="product-img"
-                          src={`${product?.imgUrl}`}
-                          alt={`${product.productName}`}
+                        <ImageCloud
+                          alt={product.productName}
+                          ClassName="product-img"
+                          imageId={product.imgUrl}
                         />
                       </div>
+                      <AddBtn onClick={() => onClickProduct(product)} />
                     </div>
-                    <AddBtn onClick={() => onClickProduct(product)} />
                   </div>
                 );
               })}
