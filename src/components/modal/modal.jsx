@@ -33,8 +33,10 @@ export default function Modal() {
             <div className="description-seleted">{selected.description}</div>
             <div className="category-name">{selected.productName}</div>
             <div className="add-btn">
-              {!(selected.autoAdd === true) && (
+              {!(selected.autoAdd === true) ? (
                 <AddBtn onClick={() => addToEventBtn()} />
+              ) : (
+                <h3>הפריט נוסף אוטומטי לאירוע</h3>
               )}
             </div>
           </div>
