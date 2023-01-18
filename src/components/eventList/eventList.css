@@ -45,6 +45,7 @@
     justify-self: center;
   }
   .input-area {
+    min-width: 100px;
     border-radius: 20px;
     align-self: stretch;
     margin-right: 15px;
