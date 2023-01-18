@@ -29,16 +29,13 @@ export default function Modal() {
                 ClassName="img-selected"
                 imageId={selected.imgUrl}
               />
-              {/* <img
-                className="img-selected"
-                alt={selected.productName}
-                src={selected.imgUrl}
-              /> */}
             </div>
             <div className="description-seleted">{selected.description}</div>
             <div className="category-name">{selected.productName}</div>
             <div className="add-btn">
-              <AddBtn onClick={() => addToEventBtn()} />
+              {!(selected.autoAdd === true) && (
+                <AddBtn onClick={() => addToEventBtn()} />
+              )}
             </div>
           </div>
         )}

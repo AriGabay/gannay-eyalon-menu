@@ -8,6 +8,7 @@ const initialState = {
   modalIsOpen: false,
   eventData: {},
   productsCount: 0,
+  eventInfo: {},
 };
 const rootReducer = (state = initialState, action) => {
   switch (action?.type) {
@@ -33,6 +34,8 @@ const rootReducer = (state = initialState, action) => {
     case 'SET_EVENT_DATA':
       const count = countProducts(action.payload);
       return { ...state, eventData: action.payload, productsCount: count };
+    case 'SET_EVENT_INFO':
+      return { ...state, eventInfo: action.payload };
     case 'REMOVE_PRODUCT_EVENT_DATA':
       const { product } = action.payload;
       delete state.eventData[product.categoryId][product.id];

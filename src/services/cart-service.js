@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+const HOST = process.env.REACT_APP_API_HOST;
+const BASE_URL = HOST + 'gannay-eylon/eventDetails';
+
 const KEY = 'event';
 export const addToEvent = (dataToAdd) => {
   if (!Object.keys(dataToAdd).length) return;
@@ -18,7 +23,6 @@ export const addToEvent = (dataToAdd) => {
       }
     } else {
       event[dataToAdd.categoryId] = {};
-      // event[dataToAdd.categoryId].set
       event[dataToAdd.categoryId][dataToAdd.id] = { ...dataToAdd };
     }
   } else {
@@ -60,4 +64,18 @@ export const countProducts = (eventData) => {
     (categoryId) => (count += Object.keys(eventData[categoryId]).length)
   );
   return count;
+};
+export const sendEvent = async (eventData) => {
+  const eventDetails = getEvent();
+  const eventInfoStr = sessionStorage.getItem('eventInfo');
+  const hashTitleStr = sessionStorage.getItem('hashTitle');
+  const eventInfo = JSON.parse(eventInfoStr);
+  const hashTitle = JSON.parse(hashTitleStr);
+  await axios.post(
+    BASE_URL,
+    { eventDetails, ...eventData, eventInfo, hashTitle },
+    {
+      responseType: 'stream',
+    }
+  );
 };

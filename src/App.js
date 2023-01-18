@@ -4,8 +4,7 @@ import EventDetails from './components/eventDetails/eventDetails';
 import Menu from './components/menu/menu';
 import Modal from './components/modal/modal';
 import NavBar from './components/navBar/navBar';
-// import SvgIcon from './assets/events-calendar-svgrepo-com.svg';
-import { ReactComponent as SvgIcon } from './assets/event-list-icon.svg';
+import { ReactComponent as EventDetailsIcon } from './assets/event-list-icon.svg';
 import { useEffect, useState } from 'react';
 import { getEvent } from './services/cart-service';
 import EventList from './components/eventList/eventList';
@@ -30,14 +29,16 @@ function App() {
           className="cart-icon-container"
           onClick={() => setEventListIsOpen(!eventListIsOpen)}
         >
-          <div className="count-container">{productsCount}</div>
-          <SvgIcon style={{ width: '50px', height: '50px' }} />
+          <div className="count-container">
+            <EventDetailsIcon style={{ width: '50px', height: '50px' }} />
+            <p style={{ marginTop: '-25px' }}>{productsCount}</p>
+          </div>
         </div>
         <div className="grid-layout">
           <NavBar setEventListIsOpen={setEventListIsOpen} />
           {eventListIsOpen ? (
             <div className="screen-layout">
-              <EventList />
+              <EventList setEventListIsOpen={setEventListIsOpen} />
             </div>
           ) : (
             <div className="screen-layout">

@@ -10,8 +10,9 @@ export default function Menu() {
   const { products, category } = useSelector((state) => state);
   const getProductsList = async () => {
     if (products?.length) return products;
-    const res = await getProducts();
-    dispatch({ type: 'SET_PRODUCTS', payload: [...res] });
+    const { productsReq, eventData } = await getProducts();
+    dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventData } });
+    dispatch({ type: 'SET_PRODUCTS', payload: [...productsReq] });
   };
 
   useEffect(() => {
@@ -57,7 +58,9 @@ export default function Menu() {
                           imageId={product.imgUrl}
                         />
                       </div>
-                      <AddBtn onClick={() => onClickProduct(product)} />
+                      {!(product.autoAdd === true) && (
+                        <AddBtn onClick={() => onClickProduct(product)} />
+                      )}
                     </div>
                   </div>
                 );

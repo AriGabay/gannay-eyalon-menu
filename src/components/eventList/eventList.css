@@ -1,0 +1,83 @@
+.event-list-mobile {
+  color: #f5efdf;
+}
+.grid-inputs {
+  max-width: 600px;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: auto;
+  gap: 15px 15px;
+  grid-template-areas: 'input-area label-input';
+  margin: 0 auto;
+}
+.label-input {
+  justify-self: end;
+  align-self: center;
+}
+.input-area {
+  border-radius: 20px;
+  font-size: medium;
+  justify-self: stretch;
+  align-self: stretch;
+}
+.sign-btn {
+  color: #f5efdf;
+  background: transparent;
+  border: 1px solid;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-inputs {
+    grid-template-columns: unset;
+    grid-auto-rows: 50px;
+    grid-auto-columns: 262px;
+    grid-template-areas:
+      'input-area'
+      'label-input';
+  }
+  .label-input {
+    justify-self: center;
+  }
+  .input-area {
+    border-radius: 20px;
+    align-self: stretch;
+    margin-right: 15px;
+    margin-left: 15px;
+    font-size: larger;
+    font-weight: 700;
+  }
+  .event-list-mobile {
+    color: #f5efdf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .sign-btn {
+    color: #f5efdf;
+    background: transparent;
+    border: 1px solid;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 8px;
+    margin-bottom: 5px;
+  }
+  .btns-actions-area {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.select-area {
+  font-size: unset;
+  border-radius: 20px;
+}

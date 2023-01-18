@@ -13,7 +13,7 @@
 .grid-layout {
   display: grid;
   grid-auto-columns: 1fr;
-  grid-auto-rows: 1fr;
+  /* grid-auto-rows: 1fr; */
   grid-template-columns: 0.4fr 1.6fr;
   grid-template-rows: 1fr;
   gap: 10px 30px;
@@ -26,18 +26,22 @@
 }
 .cart-icon-container {
   display: flex;
-  /* flex-direction: row-reverse; */
   justify-content: flex-start;
   align-items: center;
-  padding-right: 10%;
   margin-bottom: 30px;
   cursor: pointer;
+  max-width: 300px;
+  padding-right: 3%;
+  padding-left: 3%;
 }
 .count-container {
-  margin-bottom: 35px;
   font-size: 18px;
   font-weight: 800;
   color: #f5efdf;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row-reverse;
 }
 .screen-layout {
   align-self: stretch;
