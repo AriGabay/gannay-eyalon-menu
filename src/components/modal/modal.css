@@ -18,7 +18,7 @@
   grid-template-areas:
     'exit-btn'
     'modal-contant';
-  border: 1px solid #f4eddc;
+  border: 3px solid #f4eddc;
   color: #f5efdf;
 }
 .modal-contant {

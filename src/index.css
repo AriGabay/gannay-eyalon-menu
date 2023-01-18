@@ -1,6 +1,7 @@
 html {
   direction: rtl;
   min-height: 100vh;
+  font-family: 'Noto Serif Hebrew', serif;
 }
 h1,
 h2,
@@ -21,6 +22,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   min-height: 100vh;
+  font-family: 'Noto Serif Hebrew', serif;
 }
 
 code {
