@@ -165,7 +165,9 @@ export default function EventList({ setEventListIsOpen }) {
             inputType={'number'}
             labelText="מספר אורחים רזרבה :"
           />
-          <div className="label-input">אנשים קשר</div>
+          <div className="label-input" style={{ fontSize: '25px' }}>
+            אנשי קשר
+          </div>
           <div className="input-area select-area"></div>
           <InputLabel
             valueInput={eventInfoInputs}
@@ -285,7 +287,7 @@ export default function EventList({ setEventListIsOpen }) {
           <div className="label-input">שולחן צוות :</div>
           <div
             className="input-area select-area"
-            style={{ alignSelf: 'center' }}
+            style={{ alignSelf: 'center', fontSize: '20px' }}
           >
             יחויב ב 50%
           </div>
