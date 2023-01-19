@@ -8,6 +8,8 @@ import { ReactComponent as EventDetailsIcon } from './assets/event-list-icon.svg
 import { useEffect, useState } from 'react';
 import { getEvent } from './services/cart-service';
 import EventList from './components/eventList/eventList';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { modalIsOpen, productsCount } = useSelector((state) => state);
@@ -48,6 +50,19 @@ function App() {
         </div>
         {modalIsOpen && <Modal />}
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick={true}
+        rtl
+        pauseOnFocusLoss
+        draggable={true}
+        pauseOnHover={true}
+        theme="light"
+        toastStyle={{ background: '#f4eddc', margin: '0 50px' }}
+      />
     </div>
   );
 }

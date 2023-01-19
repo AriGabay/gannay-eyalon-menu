@@ -1,3 +1,10 @@
+.backgroud-modal {
+  height: 100vh;
+  background: #76746d7a;
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+}
 .modal {
   z-index: 9999;
   position: fixed;
@@ -14,7 +21,6 @@
   grid-auto-rows: 1fr;
   grid-template-columns: 1fr;
   grid-template-rows: 0.1fr 1.9fr;
-  gap: 10px 30px;
   grid-template-areas:
     'exit-btn'
     'modal-contant';
@@ -57,6 +63,7 @@
     'add-btn';
   max-height: 200px;
   max-width: 350px;
+  margin: 0 10px;
 }
 
 .image-selected {
@@ -80,6 +87,7 @@
   align-self: start;
   grid-area: description-seleted;
   min-width: 100%;
+  font-size: 20px;
 }
 
 .category-name {
@@ -87,18 +95,17 @@
   align-self: start;
   grid-area: category-name;
   font-weight: 700;
+  font-size: 35px;
 }
 
 .add-btn {
   justify-self: center;
   align-self: center;
-  /* grid-area: add-btn; */
 }
 
 @media only screen and (max-width: 550px) {
   .modal {
-    min-width: 340px;
-    /* min-height: 400px; */
+    min-width: calc(100% - 70px);
   }
 }
 @media only screen and (max-width: 400px) {
@@ -110,8 +117,4 @@
   }
 }
 @media only screen and (max-width: 380px) {
-  .modal {
-    min-width: 260px;
-    min-height: 370px;
-  }
 }

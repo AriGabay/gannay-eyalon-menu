@@ -10,8 +10,14 @@ h4,
 h5,
 h6,
 div,
+input,
+label,
+select,
+textarea,
+button,
 p {
   direction: rtl;
+  font-family: 'Noto Serif Hebrew', serif;
 }
 body {
   margin: 0;

@@ -7,7 +7,6 @@ export default function EventDetails() {
     <div className="event-details">
       <div className="event-details-container">
         <div className="event-details-contant">
-          {/* <img alt="logo" src={LogoSvg} className="svg-logo" /> */}
           <LogoSvg />
         </div>
       </div>

@@ -13,14 +13,12 @@
 .grid-layout {
   display: grid;
   grid-auto-columns: 1fr;
-  /* grid-auto-rows: 1fr; */
   grid-template-columns: 0.4fr 1.6fr;
   grid-template-rows: 1fr;
   gap: 10px 30px;
   grid-template-areas:
     '. .'
     'screen btns';
-  /* grid-template-areas: '. .'; */
   padding-right: 3%;
   padding-left: 3%;
 }
@@ -47,13 +45,6 @@
   align-self: stretch;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-}
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
   .grid-layout {
     grid-template-rows: auto auto;
@@ -71,10 +62,4 @@
     overflow: auto;
     white-space: nowrap;
   }
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
 }

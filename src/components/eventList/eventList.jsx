@@ -9,6 +9,7 @@ import { removeFromEvent, sendEvent } from '../../services/cart-service';
 import { ImageCloud } from '../ImageCloud/ImageCloud';
 import { InputLabel } from '../inputLabel/inputLabel';
 import SignatureCanvas from 'react-signature-canvas';
+import { toast } from 'react-toastify';
 
 export default function EventList({ setEventListIsOpen }) {
   const { eventData, eventInfo } = useSelector((state) => state);
@@ -80,17 +81,19 @@ export default function EventList({ setEventListIsOpen }) {
         newProducts[products[key].id] = { ...products[key] };
     });
     setProducts({ ...newProducts });
+    toast.success('הוסר מהאירוע');
   };
   const saveEventInfo = () => {
     dispatch({ type: 'SET_EVENT_INFO', payload: { ...eventInfoInputs } });
     sessionStorage.setItem('eventInfo', JSON.stringify(eventInfoInputs));
   };
-
   return page === 1 ? (
     <Fragment>
       <div className="event-list-mobile" style={{ color: 'f5efdf' }}>
         <div className="grid-inputs">
-          <div className="label-input"></div>
+          <div className="label-input">
+            <h1>פרטי האירוע</h1>
+          </div>
           <div className="input-area select-area"></div>
           <InputLabel
             valueInput={eventInfoInputs}
@@ -367,49 +370,56 @@ export default function EventList({ setEventListIsOpen }) {
       </div>
     </Fragment>
   ) : (
-    <div className="event-list" style={{ color: '#f5efdf' }}>
-      <h1>פריטים שנוספו לאירוע</h1>
-      {Object.keys(products).length ? (
-        <div>
-          <div className="menu">
-            {Object.keys(products).map((product) => (
-              <div style={{ maxWidth: '270px' }} key={products[product].id}>
-                <div className="product">
-                  <div className="product-name">
-                    {products[product].productName}
-                  </div>
-                  <div className="product-description">
-                    {products[product].description}
-                  </div>
-                  <div className="product-img-container">
-                    <ImageCloud
-                      alt={products[product].productName}
-                      imageId={products[product]?.imgUrl}
-                      ClassName="product-img"
-                    />
+    <div>
+      <div className="event-list" style={{ color: '#f5efdf' }}>
+        <h1>פריטים שנוספו לאירוע</h1>
+        {Object.keys(products).length ? (
+          <div>
+            <div className="menu">
+              {Object.keys(products).map((product) => (
+                <div style={{ maxWidth: '270px' }} key={products[product].id}>
+                  <div className="product">
+                    <div className="product-name">
+                      {products[product].productName}
+                    </div>
+                    <div className="product-description">
+                      {products[product].description}
+                    </div>
+                    <div className="product-img-container">
+                      <ImageCloud
+                        alt={products[product].productName}
+                        imageId={products[product]?.imgUrl}
+                        ClassName="product-img"
+                      />
+                    </div>
+                    {!(products[product].autoAdd === true) ? (
+                      <RemoveBtn onClick={() => removeBtn(products[product])} />
+                    ) : (
+                      <div>לא ניתן לשינוי</div>
+                    )}
                   </div>
                 </div>
-                {!(products[product].autoAdd === true) ? (
-                  <RemoveBtn onClick={() => removeBtn(products[product])} />
-                ) : (
-                  <div>לא ניתן לשינוי</div>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
+            <button
+              className="sign-btn"
+              style={{ marginTop: '50px' }}
+              onClick={() => {
+                sendEvent({ eventInfoInputs })
+                  .then(() => {
+                    setEventListIsOpen(false);
+                    toast.success('האירוע נשלח בהצלחה');
+                  })
+                  .catch(() => toast.error('ההזמנה נכשלה'));
+              }}
+            >
+              שלח
+            </button>
           </div>
-          <button
-            className="sign-btn"
-            onClick={() => {
-              sendEvent({ eventInfoInputs });
-              setEventListIsOpen(false);
-            }}
-          >
-            שלח
-          </button>
-        </div>
-      ) : (
-        <h3 style={{ margin: '0 auto' }}>לא נוספו מוצרים</h3>
-      )}
+        ) : (
+          <h3 style={{ margin: '0 auto' }}>לא נוספו מוצרים</h3>
+        )}
+      </div>
     </div>
   );
 }

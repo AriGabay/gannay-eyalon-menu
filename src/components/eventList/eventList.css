@@ -15,6 +15,7 @@
 .label-input {
   justify-self: end;
   align-self: center;
+  font-size: 20px;
 }
 .input-area {
   border-radius: 20px;
@@ -79,6 +80,5 @@
   }
 }
 .select-area {
-  font-size: unset;
   border-radius: 20px;
 }
