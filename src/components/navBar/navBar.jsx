@@ -20,11 +20,11 @@ export default function NavBar({ setEventListIsOpen }) {
   }, []);
 
   return (
-    <div className="nav-bar" style={{ color: '#f5efdf' }}>
+    <ul className="nav-bar" style={{ color: '#f5efdf' }}>
       {categories.length > 0 &&
         categories.map((categoryy) => {
           return (
-            <div
+            <li
               className={
                 categoryy.id === category.id
                   ? 'nav-link nav-link-selected'
@@ -37,9 +37,9 @@ export default function NavBar({ setEventListIsOpen }) {
               }}
             >
               {categoryy.displayName}
-            </div>
+            </li>
           );
         })}
-    </div>
+    </ul>
   );
 }

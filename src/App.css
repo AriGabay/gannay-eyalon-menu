@@ -60,5 +60,15 @@
     grid-area: btns;
     overflow: auto;
     white-space: nowrap;
+    max-width: 90%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  @supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+    .grid-layout-event-list {
+      grid-template-rows: auto auto;
+      overflow-x: hidden;
+    }
   }
 }

@@ -36,18 +36,21 @@ function App() {
             <p style={{ marginTop: '-25px' }}>{productsCount}</p>
           </div>
         </div>
-        <div className="grid-layout">
-          <NavBar setEventListIsOpen={setEventListIsOpen} />
-          {eventListIsOpen ? (
+        {eventListIsOpen ? (
+          <div className="grid-layout grid-layout-event-list">
+            <NavBar setEventListIsOpen={setEventListIsOpen} />
             <div className="screen-layout">
               <EventList setEventListIsOpen={setEventListIsOpen} />
             </div>
-          ) : (
+          </div>
+        ) : (
+          <div className="grid-layout">
+            <NavBar setEventListIsOpen={setEventListIsOpen} />
             <div className="screen-layout">
               <Menu />
             </div>
-          )}
-        </div>
+          </div>
+        )}
         {modalIsOpen && <Modal />}
       </div>
       <ToastContainer

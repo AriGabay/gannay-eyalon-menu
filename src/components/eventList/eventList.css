@@ -32,11 +32,18 @@
   border-radius: 20px;
   padding: 10px;
 }
+.btns-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
 
 @media only screen and (max-width: 600px) {
   .grid-inputs {
+    min-height: 100%;
     grid-template-columns: unset;
-    grid-auto-rows: 50px;
+    grid-auto-rows: min-content;
     grid-auto-columns: 262px;
     grid-template-areas:
       'input-area'
@@ -46,13 +53,22 @@
     justify-self: center;
   }
   .input-area {
-    min-width: 100px;
+    min-width: 100%;
     border-radius: 20px;
     align-self: stretch;
-    margin-right: 15px;
-    margin-left: 15px;
     font-size: larger;
     font-weight: 700;
+    margin: 0 auto;
+    max-width: 200px;
+    min-height: 100px;
+  }
+  .label-input-sign {
+    margin-top: 35px;
+  }
+  .sign-canvas {
+    margin-top: 35px;
+    min-height: 100%;
+    max-width: unset;
   }
   .event-list-mobile {
     color: #f5efdf;
@@ -77,6 +93,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .select-area {
+    background-color: black;
+    color: #f5efdf;
   }
 }
 .select-area {

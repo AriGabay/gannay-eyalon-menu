@@ -319,7 +319,7 @@ export default function EventList({ setEventListIsOpen }) {
             inputType={'text'}
             labelText={`הערות :`}
           />
-          <div className="label-input">
+          <div className="label-input label-input-sign">
             חתימה דיגיטלית ב touch :
             <br />
             <br />
@@ -330,7 +330,7 @@ export default function EventList({ setEventListIsOpen }) {
               נקה
             </button>
           </div>
-          <div className="input-area select-area">
+          <div className="input-area select-area sign-canvas">
             <SignatureCanvas
               canvasProps={{
                 width: 250,
@@ -346,29 +346,29 @@ export default function EventList({ setEventListIsOpen }) {
           </div>
           <div className="label-input"></div>
         </div>
-      </div>
-      <div
-        className="input-area select-area btns-actions-area"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '20px',
-        }}
-      >
-        <button onClick={() => saveEventInfo()} className="sign-btn">
-          שמור
-        </button>
-
-        <button
-          className="sign-btn"
-          onClick={() => {
-            saveEventInfo();
-            setPage(2);
+        <div
+          className="input-area select-area btns-actions-area"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '20px',
           }}
         >
-          עבור עמוד
-        </button>
+          <button onClick={() => saveEventInfo()} className="sign-btn">
+            שמור
+          </button>
+
+          <button
+            className="sign-btn"
+            onClick={() => {
+              saveEventInfo();
+              setPage(2);
+            }}
+          >
+            עבור עמוד
+          </button>
+        </div>
       </div>
     </Fragment>
   ) : (
@@ -403,23 +403,41 @@ export default function EventList({ setEventListIsOpen }) {
                 </div>
               ))}
             </div>
+            <div className="btns-container">
+              <button
+                className="sign-btn"
+                style={{ marginTop: '50px' }}
+                onClick={() => setPage(1)}
+              >
+                אחורה
+              </button>
+              <button
+                className="sign-btn"
+                style={{ marginTop: '50px' }}
+                onClick={() => {
+                  sendEvent({ eventInfoInputs })
+                    .then(() => {
+                      setEventListIsOpen(false);
+                      toast.success('האירוע נשלח בהצלחה');
+                    })
+                    .catch(() => toast.error('ההזמנה נכשלה'));
+                }}
+              >
+                שלח
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="btns-container">
             <button
               className="sign-btn"
               style={{ marginTop: '50px' }}
-              onClick={() => {
-                sendEvent({ eventInfoInputs })
-                  .then(() => {
-                    setEventListIsOpen(false);
-                    toast.success('האירוע נשלח בהצלחה');
-                  })
-                  .catch(() => toast.error('ההזמנה נכשלה'));
-              }}
+              onClick={() => setPage(1)}
             >
-              שלח
+              אחורה
             </button>
+            <h3 style={{ margin: '0 auto' }}>לא נוספו מוצרים</h3>
           </div>
-        ) : (
-          <h3 style={{ margin: '0 auto' }}>לא נוספו מוצרים</h3>
         )}
       </div>
     </div>
