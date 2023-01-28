@@ -32,6 +32,7 @@ function App() {
           onClick={() => setEventListIsOpen(!eventListIsOpen)}
         >
           <div className="count-container">
+            <p style={{ marginRight: '10px' }}>פרטי האירוע</p>
             <EventDetailsIcon style={{ width: '50px', height: '50px' }} />
             <p style={{ marginTop: '-25px' }}>{productsCount}</p>
           </div>

@@ -9,6 +9,8 @@
   padding-left: 10%;
 }
 .product {
+  padding: 20px;
+  border: #ffcd7c7d 2px solid;
   display: grid;
   gap: 0px 0px;
   align-items: center;

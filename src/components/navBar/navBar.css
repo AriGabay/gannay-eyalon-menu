@@ -1,6 +1,5 @@
 .nav-link {
   max-width: 100%;
-  border: 1px solid #f5efdf;
   margin-bottom: 20px;
   height: 60px;
   display: flex;
@@ -9,8 +8,8 @@
   border-radius: 10px;
   color: #f5efdf;
   cursor: pointer;
-  min-width: 150px;
   font-size: large;
+  border: 1px solid #ffcd7c7d;
 }
 .nav-link-selected {
   background-color: #f5efdf;
