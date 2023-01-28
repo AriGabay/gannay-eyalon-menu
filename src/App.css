@@ -64,6 +64,9 @@
     white-space: nowrap;
     max-width: 90%;
     padding-inline-start: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
   }
 }
 @media only screen and (max-width: 768px) {

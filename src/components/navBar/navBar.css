@@ -1,5 +1,5 @@
 .nav-link {
-  max-width: 100%;
+  min-width: 50%;
   margin-bottom: 20px;
   min-height: 100px;
   display: flex;
@@ -18,12 +18,15 @@
 
 @media only screen and (max-width: 768px) {
   .nav-link {
-    display: inline-block;
+    display: inline-flex;
     text-align: center;
     padding: 14px;
     text-decoration: none;
     margin-left: 10px;
     max-height: 40px;
     min-height: 50px;
+    white-space: normal;
+    justify-content: center;
+    align-items: center;
   }
 }
