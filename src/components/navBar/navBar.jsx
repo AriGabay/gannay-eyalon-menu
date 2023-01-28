@@ -20,7 +20,7 @@ export default function NavBar({ setEventListIsOpen }) {
   }, []);
 
   return (
-    <ul className="nav-bar" style={{ color: '#f5efdf', direction: 'ltr' }}>
+    <ul className="nav-bar">
       {categories.length > 0 &&
         categories.map((categoryy) => {
           return (
