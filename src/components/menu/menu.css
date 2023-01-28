@@ -14,7 +14,7 @@
   display: grid;
   gap: 0px 0px;
   align-items: center;
-  max-width: 270px;
+  min-width: 270px;
   border-radius: 10px;
   min-height: 225px;
   cursor: pointer;
