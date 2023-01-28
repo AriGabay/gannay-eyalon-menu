@@ -19,3 +19,23 @@
 .svg-logo {
   fill: #f4eddc;
 }
+@media only screen and (max-width: 900px) {
+  .event-details-contant {
+    max-width: 65%;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .event-details-contant {
+    max-width: 80%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .event-details-contant {
+    max-width: 90%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .event-details-contant {
+    max-width: 100%;
+  }
+}
