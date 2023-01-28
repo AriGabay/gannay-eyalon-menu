@@ -55,6 +55,7 @@
   .screen-layout {
     grid-area: screen;
     align-self: stretch;
+    margin-bottom: 50px;
   }
   .nav-bar {
     color: #f5efdf;

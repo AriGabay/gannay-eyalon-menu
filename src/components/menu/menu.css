@@ -79,14 +79,14 @@
 
 @media only screen and (max-width: 880px) {
   .menu {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   }
   .product-img-container {
     height: 130px;
   }
 }
 
-@media only screen and (max-width: 512px) {
+@media only screen and (max-width: 690px) {
   .product-with-add-btn {
     margin: 0 auto;
   }
