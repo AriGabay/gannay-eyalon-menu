@@ -44,16 +44,27 @@ export default function Modal() {
               </div>
               <div className="description-seleted">{selected.description}</div>
               <div className="category-name">{selected.productName}</div>
-              <label htmlFor="comments-selected-input">הערות</label>
-              <input
-                id="comments-selected-input"
-                title="הערות"
-                name="comment"
-                onChange={(event) => handelChange(event)}
-              />
               <div className="add-btn">
                 {!(selected.autoAdd === true) ? (
-                  <AddBtn onClick={() => addToEventBtn()} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      justifyContent: 'space-evenly',
+                    }}
+                  >
+                    <label htmlFor="comments-selected-input">הערות</label>
+                    <input
+                      id="comments-selected-input"
+                      title="הערות"
+                      name="comment"
+                      onChange={(event) => handelChange(event)}
+                      style={{ marginBottom: '20px' }}
+                    />
+
+                    <AddBtn onClick={() => addToEventBtn()} />
+                  </div>
                 ) : (
                   <h3>הפריט נוסף אוטומטי לאירוע</h3>
                 )}

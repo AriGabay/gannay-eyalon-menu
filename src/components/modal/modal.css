@@ -11,8 +11,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: 500px;
-  min-height: 500px;
+  min-width: 600px;
+  min-height: 600px;
   background-color: black;
   border-radius: 15px;
   opacity: 0.95;
@@ -103,9 +103,9 @@
   align-self: center;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 650px) {
   .modal {
-    min-width: calc(100% - 70px);
+    min-width: calc(90% - 50px);
   }
 }
 @media only screen and (max-width: 400px) {

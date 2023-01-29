@@ -70,6 +70,7 @@ export default function EventList({ setEventListIsOpen }) {
       return;
     }
     eventInfoInputs[name] = value;
+    saveEventInfo();
   };
 
   const removeBtn = (product) => {
