@@ -14,7 +14,7 @@
   display: grid;
   gap: 0px 0px;
   align-items: center;
-  min-width: 270px;
+  min-width: 250px;
   border-radius: 10px;
   min-height: 225px;
   cursor: pointer;
@@ -77,9 +77,9 @@
   font-size: 45px;
 }
 
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 968px) {
   .menu {
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
   .product-img-container {
     height: 130px;

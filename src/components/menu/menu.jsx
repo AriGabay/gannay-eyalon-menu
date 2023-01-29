@@ -41,7 +41,7 @@ export default function Menu() {
                 if (product?.categoryId !== category.id) return '';
                 return (
                   <div
-                    style={{ maxWidth: '270px' }}
+                    style={{ maxWidth: '250px' }}
                     key={product.id}
                     onClick={() => onClickProduct(product)}
                     className="product-with-add-btn"

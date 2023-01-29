@@ -16,11 +16,9 @@ export const addToEvent = (dataToAdd) => {
       event[dataToAdd.categoryId] &&
       Object.keys(event[dataToAdd.categoryId])?.length > 0
     ) {
-      if (!event[dataToAdd.categoryId][dataToAdd.id]) {
-        event[dataToAdd.categoryId][dataToAdd.id] = {
-          ...dataToAdd,
-        };
-      }
+      event[dataToAdd.categoryId][dataToAdd.id] = {
+        ...dataToAdd,
+      };
     } else {
       event[dataToAdd.categoryId] = {};
       event[dataToAdd.categoryId][dataToAdd.id] = { ...dataToAdd };

@@ -9,13 +9,22 @@ import { toast } from 'react-toastify';
 export default function Modal() {
   const dispatch = useDispatch();
   const { selected } = useSelector((state) => state);
+
   const closeModal = () =>
     dispatch({ type: 'SET_MODAL_IS_OPEN', payload: false });
+
   const addToEventBtn = () => {
+    console.log(selected);
     const eventData = addToEvent(selected);
     dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventData } });
     setTimeout(() => closeModal(), 1000);
     toast.success('נוסף לאירוע');
+  };
+
+  const handelChange = ({ target }) => {
+    const { name, value } = target;
+    dispatch({ type: 'SET_SELECTED', payload: { ...selected, [name]: value } });
+    // selected[name] = value;
   };
   return (
     <div className="backgroud-modal">
@@ -35,6 +44,13 @@ export default function Modal() {
               </div>
               <div className="description-seleted">{selected.description}</div>
               <div className="category-name">{selected.productName}</div>
+              <label htmlFor="comments-selected-input">הערות</label>
+              <input
+                id="comments-selected-input"
+                title="הערות"
+                name="comment"
+                onChange={(event) => handelChange(event)}
+              />
               <div className="add-btn">
                 {!(selected.autoAdd === true) ? (
                   <AddBtn onClick={() => addToEventBtn()} />
