@@ -45,7 +45,7 @@
   align-self: stretch;
 }
 
-@media only screen and (max-width: 968px) {
+@media only screen and (max-width: 1100px) {
   .grid-layout {
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -70,7 +70,7 @@
     align-items: center;
   }
 }
-@media only screen and (max-width: 968px) {
+@media only screen and (max-width: 1100px) {
   .nav-bar {
     max-width: 100%;
     direction: rtl;
