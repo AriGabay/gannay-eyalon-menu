@@ -24,36 +24,34 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
-      <div className="black-backgroud">
-        <EventDetails />
-        <div
-          className="cart-icon-container"
-          onClick={() => setEventListIsOpen(!eventListIsOpen)}
-        >
-          <div className="count-container">
-            <p style={{ marginRight: '10px' }}>פרטי האירוע</p>
-            <EventDetailsIcon style={{ width: '50px', height: '50px' }} />
-            <p style={{ marginTop: '-25px' }}>{productsCount}</p>
+    <div className="App black-backgroud">
+      <EventDetails />
+      <div
+        className="cart-icon-container"
+        onClick={() => setEventListIsOpen(!eventListIsOpen)}
+      >
+        <div className="count-container">
+          <p style={{ marginRight: '10px' }}>פרטי האירוע</p>
+          <EventDetailsIcon style={{ width: '50px', height: '50px' }} />
+          <p style={{ marginTop: '-25px' }}>{productsCount}</p>
+        </div>
+      </div>
+      {eventListIsOpen ? (
+        <div className="grid-layout grid-layout-event-list">
+          <NavBar setEventListIsOpen={setEventListIsOpen} />
+          <div className="screen-layout">
+            <EventList setEventListIsOpen={setEventListIsOpen} />
           </div>
         </div>
-        {eventListIsOpen ? (
-          <div className="grid-layout grid-layout-event-list">
-            <NavBar setEventListIsOpen={setEventListIsOpen} />
-            <div className="screen-layout">
-              <EventList setEventListIsOpen={setEventListIsOpen} />
-            </div>
+      ) : (
+        <div className="grid-layout">
+          <NavBar setEventListIsOpen={setEventListIsOpen} />
+          <div className="screen-layout">
+            <Menu />
           </div>
-        ) : (
-          <div className="grid-layout">
-            <NavBar setEventListIsOpen={setEventListIsOpen} />
-            <div className="screen-layout">
-              <Menu />
-            </div>
-          </div>
-        )}
-        {modalIsOpen && <Modal />}
-      </div>
+        </div>
+      )}
+      {modalIsOpen && <Modal />}
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -67,6 +65,9 @@ function App() {
         theme="light"
         toastStyle={{ background: '#f4eddc', margin: '0 50px' }}
       />
+      <a href="#" className="top">
+        חזרה לתחילת העמוד &#8593;
+      </a>
     </div>
   );
 }
