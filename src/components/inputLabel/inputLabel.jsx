@@ -12,14 +12,14 @@ export const InputLabel = ({
       <label className="label-input" htmlFor={inputId}>
         {labelText}
       </label>
-      <input
+      <textarea
         name={inputId}
         onChange={onChange}
         className="input-area"
         type={inputType}
         id={inputId}
         defaultValue={valueInput[inputId] ?? valueInput[inputId]}
-      ></input>
+      />
     </React.Fragment>
   );
 };

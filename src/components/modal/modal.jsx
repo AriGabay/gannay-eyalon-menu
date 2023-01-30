@@ -55,7 +55,7 @@ export default function Modal() {
                     }}
                   >
                     <label htmlFor="comments-selected-input">הערות</label>
-                    <input
+                    <textarea
                       id="comments-selected-input"
                       title="הערות"
                       name="comment"
