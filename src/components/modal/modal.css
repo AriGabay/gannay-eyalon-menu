@@ -28,6 +28,7 @@
   color: #f5efdf;
 }
 .modal-contant {
+  width: 100%;
   justify-self: center;
   grid-area: modal-contant;
 }
@@ -62,8 +63,8 @@
     'description-seleted'
     'add-btn';
   max-height: 200px;
-  max-width: 350px;
-  margin: 0 10px;
+  max-width: 450px;
+  margin: 20px auto;
 }
 
 .image-selected {
