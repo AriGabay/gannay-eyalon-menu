@@ -103,10 +103,18 @@
   justify-self: center;
   align-self: center;
 }
+#comments-selected-input {
+  width: 300px;
+  height: 90px;
+  margin-top: 20px;
+}
 
 @media only screen and (max-width: 650px) {
   .modal {
     min-width: calc(90% - 10px);
+  }
+  #comments-selected-input {
+    width: 200px;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -118,4 +126,7 @@
   }
 }
 @media only screen and (max-width: 380px) {
+  #comments-selected-input {
+    width: 100px;
+  }
 }
