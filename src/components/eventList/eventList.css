@@ -23,6 +23,8 @@
   font-size: medium;
   justify-self: stretch;
   align-self: stretch;
+  font-size: 20px;
+  text-align: center;
 }
 .sign-btn {
   color: #f5efdf;
@@ -62,6 +64,7 @@
     margin: 0 auto;
     max-width: 200px;
     min-height: 100px;
+    font-size: 15px;
   }
   .label-input-sign {
     margin-top: 35px;

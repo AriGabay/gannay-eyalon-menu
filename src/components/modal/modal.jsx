@@ -1,3 +1,4 @@
+import '../eventList/eventList.css';
 import './modal.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,6 +58,7 @@ export default function Modal() {
                     <label htmlFor="comments-selected-input">הערות</label>
                     <textarea
                       id="comments-selected-input"
+                      className="input-area"
                       title="הערות"
                       name="comment"
                       onChange={(event) => handelChange(event)}
