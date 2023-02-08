@@ -3,9 +3,14 @@ import './modal.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddBtn from '../addBtn/addBtn';
-import { addToEvent, getProductIdsCart } from '../../services/cart-service';
+import {
+  addToEvent,
+  getProductIdsCart,
+  removeFromEvent,
+} from '../../services/cart-service';
 import { ImageCloud } from '../ImageCloud/ImageCloud';
 import { toast } from 'react-toastify';
+import RemoveBtn from '../removeBtn/removeBtn';
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -27,6 +32,14 @@ export default function Modal() {
     const { name, value } = target;
     dispatch({ type: 'SET_SELECTED', payload: { ...selected, [name]: value } });
     // selected[name] = value;
+  };
+  const removeBtn = (product) => {
+    const eventDataNew = removeFromEvent(product);
+    dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventDataNew } });
+    toast.success('הוסר מהאירוע');
+    const productIdsCart = getProductIdsCart();
+    dispatch({ type: 'SET_PRODUCT_IDS_CART', payload: [...productIdsCart] });
+    setTimeout(() => closeModal(), 1000);
   };
   return (
     <div className="backgroud-modal">
@@ -65,8 +78,17 @@ export default function Modal() {
                       onChange={(event) => handelChange(event)}
                       style={{ marginBottom: '20px' }}
                     />
-
-                    <AddBtn onClick={() => addToEventBtn()} />
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-evenly',
+                        width: '100%',
+                      }}
+                    >
+                      <RemoveBtn onClick={() => removeBtn(selected)} />
+                      <AddBtn onClick={() => addToEventBtn()} />
+                    </div>
                   </div>
                 ) : (
                   <h3>הפריט נוסף אוטומטי לאירוע</h3>
