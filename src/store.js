@@ -1,6 +1,7 @@
 import { countProducts } from './services/cart-service';
 const initialState = {
   products: [],
+  productIdsCart: [],
   selected: {},
   menuType: null,
   categories: [],
@@ -26,6 +27,11 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, page: action.payload };
     case 'SET_MODAL_IS_OPEN':
       return { ...state, modalIsOpen: action.payload };
+    case 'SET_PRODUCT_IDS_CART':
+      return {
+        ...state,
+        productIdsCart: [...action.payload],
+      };
     case 'SET_PRODUCTS_COUNT':
       return {
         ...state,

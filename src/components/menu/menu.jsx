@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getProductIdsCart } from '../../services/cart-service';
 import { getProducts } from '../../services/product-service';
 import AddBtn from '../addBtn/addBtn';
 import { ImageCloud } from '../ImageCloud/ImageCloud';
@@ -7,11 +8,13 @@ import './menu.css';
 
 export default function Menu() {
   const dispatch = useDispatch();
-  const { products, category } = useSelector((state) => state);
+  const { products, category, productIdsCart } = useSelector((state) => state);
   const getProductsList = async () => {
     if (products?.length) return products;
     const { productsReq, eventData } = await getProducts();
+    const productIdsCart = getProductIdsCart();
     dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventData } });
+    dispatch({ type: 'SET_PRODUCT_IDS_CART', payload: [...productIdsCart] });
     dispatch({ type: 'SET_PRODUCTS', payload: [...productsReq] });
   };
 
@@ -46,7 +49,14 @@ export default function Menu() {
                     onClick={() => onClickProduct(product)}
                     className="product-with-add-btn"
                   >
-                    <div className="product">
+                    <div
+                      className={`product ${
+                        productIdsCart.length > 0 &&
+                        productIdsCart.includes(product.id)
+                          ? 'in-cart'
+                          : ''
+                      }`}
+                    >
                       <div className="product-name">{product.productName}</div>
                       <div className="product-description">
                         {product.description}

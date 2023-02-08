@@ -88,6 +88,13 @@ export default function EventList({ setEventListIsOpen }) {
     dispatch({ type: 'SET_EVENT_INFO', payload: { ...eventInfoInputs } });
     sessionStorage.setItem('eventInfo', JSON.stringify(eventInfoInputs));
   };
+  const removeEventInfo = () => {
+    sessionStorage.clear();
+    toast.success('האירוע נמחק בהצלחה !');
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  };
   return page === 1 ? (
     <Fragment>
       <div className="event-list-mobile" style={{ color: 'f5efdf' }}>
@@ -101,14 +108,18 @@ export default function EventList({ setEventListIsOpen }) {
             onChange={handelChange}
             inputId={'groomName'}
             inputType={'text'}
-            labelText="שם מלא - חתן :"
+            labelText={`שם מלא - חתן :
+            מספר פלאפון :
+            `}
           />
           <InputLabel
             valueInput={eventInfoInputs}
             onChange={handelChange}
             inputId={'brideName'}
             inputType={'text'}
-            labelText="שם מלא - כלה :"
+            labelText={`שם מלא - כלה :
+            מספר פלאפון :
+            `}
           />
           <InputLabel
             valueInput={eventInfoInputs}
@@ -116,13 +127,6 @@ export default function EventList({ setEventListIsOpen }) {
             inputId={'eventDate'}
             inputType={'date'}
             labelText="תאריך האירוע :"
-          />
-          <InputLabel
-            valueInput={eventInfoInputs}
-            onChange={handelChange}
-            inputId={'phone'}
-            inputType={'text'}
-            labelText="פלאפון חתן או כלה :"
           />
           <InputLabel
             valueInput={eventInfoInputs}
@@ -356,10 +360,18 @@ export default function EventList({ setEventListIsOpen }) {
             marginBottom: '20px',
           }}
         >
-          <button onClick={() => saveEventInfo()} className="sign-btn">
+          <button className="sign-btn" onClick={() => removeEventInfo()}>
+            נקה הכל
+          </button>
+          <button
+            onClick={() => {
+              saveEventInfo();
+              toast.success('האירוע נשמר בהצלחה !');
+            }}
+            className="sign-btn"
+          >
             שמור
           </button>
-
           <button
             className="sign-btn"
             onClick={() => {

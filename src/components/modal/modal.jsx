@@ -3,7 +3,7 @@ import './modal.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddBtn from '../addBtn/addBtn';
-import { addToEvent } from '../../services/cart-service';
+import { addToEvent, getProductIdsCart } from '../../services/cart-service';
 import { ImageCloud } from '../ImageCloud/ImageCloud';
 import { toast } from 'react-toastify';
 
@@ -15,9 +15,10 @@ export default function Modal() {
     dispatch({ type: 'SET_MODAL_IS_OPEN', payload: false });
 
   const addToEventBtn = () => {
-    console.log(selected);
-    const eventData = addToEvent(selected);
-    dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventData } });
+    const event = addToEvent(selected);
+    const productIdsCart = getProductIdsCart();
+    dispatch({ type: 'SET_EVENT_DATA', payload: { ...event } });
+    dispatch({ type: 'SET_PRODUCT_IDS_CART', payload: [...productIdsCart] });
     setTimeout(() => closeModal(), 1000);
     toast.success('נוסף לאירוע');
   };

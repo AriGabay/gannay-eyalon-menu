@@ -30,6 +30,17 @@ export const addToEvent = (dataToAdd) => {
   saveEvent(event);
   return event;
 };
+export const getProductIdsCart = () => {
+  const event = getEvent();
+  if (!Object.keys(event).length) return [];
+  const productIdsCart = [];
+  Object.keys(event).forEach((catagoryId) =>
+    Object.keys(event[catagoryId]).forEach((productId) =>
+      productIdsCart.push(Number(productId))
+    )
+  );
+  return productIdsCart;
+};
 
 export const removeFromEvent = (product) => {
   const eventData = getEvent();
