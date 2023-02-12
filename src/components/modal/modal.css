@@ -25,7 +25,7 @@
     'modal-contant';
   border: 3px solid #f4eddc;
   color: #f5efdf;
-  min-width: calc(90% - 25rem);
+  min-width: 90% !important;
 }
 .modal-contant {
   width: 100%;
