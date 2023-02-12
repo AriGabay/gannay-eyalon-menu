@@ -27,11 +27,16 @@ export default function Modal() {
     setTimeout(() => closeModal(), 1000);
     toast.success('נוסף לאירוע');
   };
-
+  const inputComment = {};
   const handelChange = ({ target }) => {
     const { name, value } = target;
-    dispatch({ type: 'SET_SELECTED', payload: { ...selected, [name]: value } });
-    // selected[name] = value;
+    inputComment[name] = value;
+  };
+  const updateSelectedComment = () => {
+    dispatch({
+      type: 'SET_SELECTED',
+      payload: { ...selected, ...inputComment },
+    });
   };
   const removeBtn = (product) => {
     const eventDataNew = removeFromEvent(product);
@@ -75,6 +80,7 @@ export default function Modal() {
                       className="input-area"
                       title="הערות"
                       name="comment"
+                      onBlur={() => updateSelectedComment()}
                       onChange={(event) => handelChange(event)}
                       style={{ marginBottom: '20px' }}
                     />
