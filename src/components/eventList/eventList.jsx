@@ -231,6 +231,13 @@ export default function EventList({ setEventListIsOpen }) {
           <InputLabel
             valueInput={eventInfoInputs}
             onChange={handelChange}
+            inputId={'designer'}
+            inputType={'text'}
+            labelText="מעצב/ת :"
+          />
+          <InputLabel
+            valueInput={eventInfoInputs}
+            onChange={handelChange}
             inputId={'photographer'}
             inputType={'text'}
             labelText="צלם :"
