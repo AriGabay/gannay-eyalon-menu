@@ -2,6 +2,7 @@ html {
   direction: rtl;
   min-height: 100vh;
   font-family: 'Noto Serif Hebrew', serif;
+  font-size: 16px;
 }
 h1,
 h2,
@@ -38,4 +39,20 @@ code {
 }
 div {
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  html {
+    font-size: 11px;
+  }
 }

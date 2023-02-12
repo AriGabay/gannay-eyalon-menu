@@ -6,12 +6,31 @@ export const InputLabel = ({
   inputType,
   onChange,
   valueInput = {},
+  secendLabel = '',
 }) => {
   return (
     <React.Fragment>
-      <label className="label-input" htmlFor={inputId}>
-        {labelText}
-      </label>
+      {!secendLabel.length ? (
+        <label className="label-input" htmlFor={inputId}>
+          {labelText}
+        </label>
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <label className="label-input" htmlFor={inputId}>
+            {labelText}
+            <br />
+            {secendLabel}
+          </label>
+        </div>
+      )}
+
       {inputType === 'time' ||
       inputType === 'date' ||
       inputType === 'number' ? (

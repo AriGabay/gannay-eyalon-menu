@@ -108,18 +108,16 @@ export default function EventList({ setEventListIsOpen }) {
             onChange={handelChange}
             inputId={'groomName'}
             inputType={'text'}
-            labelText={`שם מלא - חתן :
-            מספר פלאפון :
-            `}
+            secendLabel="ומספר פלאפון :"
+            labelText="חתן - שם מלא"
           />
           <InputLabel
             valueInput={eventInfoInputs}
             onChange={handelChange}
             inputId={'brideName'}
             inputType={'text'}
-            labelText={`שם מלא - כלה :
-            מספר פלאפון :
-            `}
+            secendLabel="ומספר פלאפון :"
+            labelText="כלה - שם מלא"
           />
           <InputLabel
             valueInput={eventInfoInputs}
@@ -188,58 +186,34 @@ export default function EventList({ setEventListIsOpen }) {
             inputType={'text'}
             labelText="איש קשר - כלה :"
           />
-          <label className="label-input" htmlFor="locationCanopy">
-            מיקום החופה :
-          </label>
-          <select
-            name="locationCanopy"
-            className="input-area select-area"
-            id="locationCanopy"
+          <InputLabel
+            valueInput={eventInfoInputs}
             onChange={handelChange}
-          >
-            <option value="">בהתאם למזג האוויר ושיקול דעת הנהלת האולם</option>
-            <option value="inSide">בתוך האולם</option>
-            <option value="outSide">בגן</option>
-          </select>
-          <label className="label-input" htmlFor="locationBuffet">
-            מיקום הבופה :
-          </label>
-          <select
+            inputId={'locationCanopy'}
+            inputType={'text'}
+            labelText="מיקום החופה :"
+          />
+          <InputLabel
+            valueInput={eventInfoInputs}
             onChange={handelChange}
-            name="locationBuffet"
-            className="input-area select-area"
-            id="locationBuffet"
-          >
-            <option value="">בהתאם למזג האוויר ושיקול דעת הנהלת האולם</option>
-            <option value="inSide">בתוך האולם</option>
-            <option value="outSide">בגן</option>
-          </select>
-          <label className="label-input" htmlFor="SeparationTables">
-            הפרדה שולחנות :
-          </label>
-          <select
-            defaultValue={eventInfoInputs.SeparationTables}
+            inputId={'locationBuffet'}
+            inputType={'text'}
+            labelText="מיקום הבופה :"
+          />
+          <InputLabel
+            valueInput={eventInfoInputs}
             onChange={handelChange}
-            name="SeparationTables"
-            className="input-area select-area"
-            id="SeparationTables"
-          >
-            <option value="לא">לא</option>
-            <option value="כן">כן</option>
-          </select>
-          <label className="label-input" htmlFor="SeparationArea">
-            הפרדה רחבת ריקודים :
-          </label>
-          <select
-            defaultValue={eventInfoInputs.SeparationArea}
+            inputId={'separationTables'}
+            inputType={'text'}
+            labelText="הפרדה שולחנות :"
+          />
+          <InputLabel
+            valueInput={eventInfoInputs}
             onChange={handelChange}
-            name="SeparationArea"
-            className="input-area select-area"
-            id="SeparationArea"
-          >
-            <option value="לא">לא</option>
-            <option value="כן">כן</option>
-          </select>
+            inputId={'separationArea'}
+            inputType={'text'}
+            labelText="הפרדה רחבת ריקודים :"
+          />
           <InputLabel
             valueInput={eventInfoInputs}
             onChange={handelChange}

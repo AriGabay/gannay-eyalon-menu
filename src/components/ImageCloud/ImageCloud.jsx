@@ -6,9 +6,9 @@ import { quality } from '@cloudinary/url-gen/actions/delivery';
 
 export function ImageCloud({
   alt,
-  maxHeight,
-  maxWidth,
-  imageId = 'old_logo_rssqwk',
+  maxHeight = 250,
+  maxWidth = 100,
+  imageId = 'logo-gold_tk2tzc',
   ClassName,
 }) {
   const cld = new Cloudinary({
@@ -24,10 +24,8 @@ export function ImageCloud({
       imageId
     );
   if (isUrl || imageId === '') {
-    imageId = 'logo-gold_tk2tzc';
+    imageId = 'logo-gold_3_wfioim';
     myImage = cld.image(imageId);
-    maxWidth = 100;
-    maxHeight = 250;
   }
   myImage.delivery(quality('auto:best'));
 
@@ -51,9 +49,4 @@ ImageCloud.propsTypes = {
   alt: PropTypes.string,
   imageId: PropTypes.element.isRequired,
   ClassName: PropTypes.string,
-};
-ImageCloud.defaultProps = {
-  maxHeight: 300,
-  maxWidth: 300,
-  ClassName: ' ',
 };
