@@ -6,7 +6,7 @@
   grid-template-rows: auto;
   gap: 15px 20px;
   color: whitesmoke;
-  padding-left: 10%;
+  margin: 0 2rem;
 }
 .product {
   padding: 20px;
@@ -73,7 +73,7 @@
 
 .menu-type-title {
   color: #f5efdf;
-  text-align: start;
+  text-align: center;
   font-size: 45px;
 }
 .in-cart {
