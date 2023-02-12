@@ -67,6 +67,16 @@ export default function EventList({ setEventListIsOpen }) {
     if (!value?.length) return;
     if (name === 'eventDate') {
       eventInfoInputs[name] = String(value).split('-').reverse().join('/');
+      saveEventInfo();
+      return;
+    }
+    if (name === 'email') {
+      const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      console.log('reg.test(value)', reg.test(value));
+      if (reg.test(value)) {
+        eventInfoInputs[name] = value;
+      }
+      saveEventInfo();
       return;
     }
     eventInfoInputs[name] = value;
@@ -118,6 +128,13 @@ export default function EventList({ setEventListIsOpen }) {
             inputType={'text'}
             secendLabel="ומספר פלאפון :"
             labelText="כלה - שם מלא"
+          />
+          <InputLabel
+            valueInput={eventInfoInputs}
+            onChange={handelChange}
+            inputId={'email'}
+            inputType={'email'}
+            labelText="מייל :"
           />
           <InputLabel
             valueInput={eventInfoInputs}
