@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useMemo, useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,14 +25,31 @@ export default function EventList({ setEventListIsOpen }) {
     return date;
   };
   const [page, setPage] = useState(1);
-  let eventInfoInputs = {
-    today: today(),
-    ...eventInfo,
-    SeparationArea: 'לא',
-    SeparationTables: 'לא',
-  };
+  let eventInfoInputs = useMemo(() => {
+    return {
+      today: today(),
+      ...eventInfo,
+      SeparationArea: 'לא',
+      SeparationTables: 'לא',
+    };
+  }, [eventInfo]);
+
   const hashTitle = { today: 'תאריך ביצוע ההזמנה : ' };
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (
+      signCanvas &&
+      signCanvas.current &&
+      signCanvas.current.isEmpty() &&
+      Object.keys(eventInfoInputs).length &&
+      eventInfoInputs.sign
+    ) {
+      signCanvas.current.fromDataURL(eventInfoInputs.sign, {
+        width: 250,
+        height: 150,
+      });
+    }
+  }, [signCanvas, eventInfoInputs]);
   useEffect(() => {
     const copy = {};
     Object.keys(eventData).forEach((categoryId) => {
@@ -71,8 +88,8 @@ export default function EventList({ setEventListIsOpen }) {
       return;
     }
     if (name === 'email') {
+      // eslint-disable-next-line no-useless-escape
       const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-      console.log('reg.test(value)', reg.test(value));
       if (reg.test(value)) {
         eventInfoInputs[name] = value;
       }
@@ -324,11 +341,15 @@ export default function EventList({ setEventListIsOpen }) {
           />
           <div className="label-input label-input-sign">
             חתימה דיגיטלית ב touch :
-            <br />
-            <br />
             <button
               className="sign-btn"
-              onClick={() => signCanvas.current.clear()}
+              onClick={() => {
+                if (eventInfoInputs.sign) {
+                  const { sign, ...restData } = eventInfoInputs;
+                  eventInfoInputs = restData;
+                }
+                saveEventInfo();
+              }}
             >
               נקה
             </button>
@@ -342,9 +363,10 @@ export default function EventList({ setEventListIsOpen }) {
                 style: { background: 'white', borderRadius: '20px' },
               }}
               ref={signCanvas}
-              onEnd={(event) =>
-                (eventInfoInputs.sign = event.target.toDataURL())
-              }
+              onEnd={(event) => {
+                eventInfoInputs.sign = event.target.toDataURL();
+                saveEventInfo();
+              }}
             />
           </div>
           <div className="label-input"></div>
