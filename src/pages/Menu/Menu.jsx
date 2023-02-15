@@ -1,19 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
-import EventDetails from './components/eventDetails/eventDetails';
-import Menu from './components/menu/menu';
-import Modal from './components/modal/modal';
-import NavBar from './components/navBar/navBar';
-import { ReactComponent as EventDetailsIcon } from './assets/event-list-icon.svg';
+import '../../App.css';
+import MenuComp from '../../components/menu/menu';
+import NavBar from '../../components/navBar/navBar';
 import { useEffect, useState } from 'react';
-import { getEvent } from './services/cart-service';
-import EventList from './components/eventList/eventList';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { getEvent } from '../../services/cart-service';
+import EventList from '../../components/eventList/eventList';
+import { ReactComponent as EventDetailsIcon } from '../../assets/event-list-icon.svg';
+import { useNavigate } from 'react-router-dom';
 
-function App() {
-  const { modalIsOpen, productsCount } = useSelector((state) => state);
+function Menu() {
+  const { productsCount } = useSelector((state) => state);
   const [eventListIsOpen, setEventListIsOpen] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,10 +23,9 @@ function App() {
 
   return (
     <div className="App black-backgroud">
-      <EventDetails />
       <div
         className="cart-icon-container"
-        onClick={() => setEventListIsOpen(!eventListIsOpen)}
+        onClick={() => navigate('/eventList')}
       >
         <div className="count-container">
           <p style={{ marginRight: '10px' }}>פרטי האירוע</p>
@@ -47,29 +44,12 @@ function App() {
         <div className="grid-layout">
           <NavBar setEventListIsOpen={setEventListIsOpen} />
           <div className="screen-layout">
-            <Menu />
+            <MenuComp />
           </div>
         </div>
       )}
-      {modalIsOpen && <Modal />}
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick={true}
-        rtl
-        pauseOnFocusLoss
-        draggable={true}
-        pauseOnHover={true}
-        theme="light"
-        toastStyle={{ background: '#f4eddc', margin: '0 50px' }}
-      />
-      <a href="#" className="top">
-        חזרה לתחילת העמוד &#8593;
-      </a>
     </div>
   );
 }
 
-export default App;
+export default Menu;

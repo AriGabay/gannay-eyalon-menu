@@ -6,7 +6,7 @@ import AddBtn from '../addBtn/addBtn';
 import { ImageCloud } from '../ImageCloud/ImageCloud';
 import './menu.css';
 
-export default function Menu() {
+export default function MenuComp() {
   const dispatch = useDispatch();
   const { products, category, productIdsCart } = useSelector((state) => state);
   const getProductsList = async () => {

@@ -45,18 +45,18 @@
   align-self: stretch;
 }
 .top {
-  --offset: 50px;
-  position: sticky;
-  bottom: 20px;
-  margin-right: 10px;
-  place-self: end;
-  margin-top: calc(100vh + var(--offset));
-  text-decoration: none;
-  padding: 10px;
-  font-family: sans-serif;
-  color: black;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  border-radius: 100%;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  opacity: 100%;
+  transition: opacity 0.5s;
   background: #f5efdf;
   border-radius: 100px;
+  color: black;
   white-space: nowrap;
 }
 

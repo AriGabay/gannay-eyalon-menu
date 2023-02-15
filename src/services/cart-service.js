@@ -88,3 +88,18 @@ export const sendEvent = async (eventData) => {
     }
   );
 };
+export const updateEvent = async (
+  eventDetails,
+  eventInfo,
+  hashTitle,
+  eventDetailsId
+) => {
+  const res = await axios.put(
+    BASE_URL,
+    { eventDetails, eventInfo, hashTitle, eventDetailsId },
+    {
+      responseType: 'stream',
+    }
+  );
+  console.log(res.data);
+};

@@ -25,7 +25,7 @@
     'modal-contant';
   border: 3px solid #f4eddc;
   color: #f5efdf;
-  min-width: 90% !important;
+  min-width: 60%;
 }
 .modal-contant {
   width: 100%;
@@ -116,22 +116,19 @@
 
 @media only screen and (max-width: 950px) {
   .modal {
-    min-width: calc(90% - 11rem);
+    min-width: 70%;
   }
 }
 
 @media only screen and (max-width: 650px) {
   .modal {
-    min-width: calc(90% - 7rem);
+    min-width: 80%;
   }
   #comments-selected-input {
     width: 200px;
   }
 }
 @media only screen and (max-width: 570px) {
-  .modal {
-    min-width: calc(90% - 3rem);
-  }
   .image-selected img {
     max-width: 20rem;
   }

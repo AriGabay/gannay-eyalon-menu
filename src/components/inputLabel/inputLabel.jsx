@@ -8,6 +8,9 @@ export const InputLabel = ({
   valueInput = {},
   secendLabel = '',
 }) => {
+  if (inputId === 'timeOfStartEvent') {
+    inputType = 'time';
+  }
   return (
     <React.Fragment>
       {!secendLabel.length ? (

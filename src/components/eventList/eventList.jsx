@@ -29,8 +29,8 @@ export default function EventList({ setEventListIsOpen }) {
     return {
       today: today(),
       ...eventInfo,
-      SeparationArea: 'לא',
-      SeparationTables: 'לא',
+      separationArea: 'לא',
+      separationTables: 'לא',
     };
   }, [eventInfo]);
 
@@ -377,7 +377,7 @@ export default function EventList({ setEventListIsOpen }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginBottom: '20px',
+            paddingBottom: '3rem',
           }}
         >
           <button className="sign-btn" onClick={() => removeEventInfo()}>
