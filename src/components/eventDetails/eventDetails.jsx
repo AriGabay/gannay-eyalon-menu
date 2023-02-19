@@ -6,8 +6,10 @@ export default function EventDetails() {
   return (
     <div className="event-details">
       <div className="event-details-container">
-        <div className="event-details-contant">
-          <LogoSvg />
+        <div className="event-details-contant" style={{ cursor: 'pointer' }}>
+          <a href="/">
+            <LogoSvg />
+          </a>
         </div>
       </div>
     </div>

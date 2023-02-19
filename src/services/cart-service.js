@@ -75,18 +75,30 @@ export const countProducts = (eventData) => {
   return count;
 };
 export const sendEvent = async (eventData) => {
-  const eventDetails = getEvent();
-  const eventInfoStr = sessionStorage.getItem('eventInfo');
-  const hashTitleStr = sessionStorage.getItem('hashTitle');
-  const eventInfo = JSON.parse(eventInfoStr);
-  const hashTitle = JSON.parse(hashTitleStr);
-  await axios.post(
-    BASE_URL,
-    { eventDetails, ...eventData, eventInfo, hashTitle },
-    {
-      responseType: 'stream',
+  try {
+    const eventDetails = getEvent();
+    const eventInfoStr = sessionStorage.getItem('eventInfo');
+    const hashTitleStr = sessionStorage.getItem('hashTitle');
+    const eventInfo = JSON.parse(eventInfoStr);
+    const hashTitle = JSON.parse(hashTitleStr);
+    const res = await axios
+      .post(
+        BASE_URL,
+        { eventDetails, ...eventData, eventInfo, hashTitle },
+        {
+          responseType: 'stream',
+        }
+      )
+      .catch((error) => {
+        throw error;
+      });
+    if (res.status === 200) {
+      sessionStorage.clear();
     }
-  );
+    return res;
+  } catch (error) {
+    console.error('error :', error);
+  }
 };
 export const updateEvent = async (
   eventDetails,
@@ -94,12 +106,20 @@ export const updateEvent = async (
   hashTitle,
   eventDetailsId
 ) => {
-  const res = await axios.put(
-    BASE_URL,
-    { eventDetails, eventInfo, hashTitle, eventDetailsId },
-    {
-      responseType: 'stream',
-    }
-  );
-  console.log(res.data);
+  try {
+    const res = await axios
+      .put(
+        BASE_URL,
+        { eventDetails, eventInfo, hashTitle, eventDetailsId },
+        {
+          responseType: 'stream',
+        }
+      )
+      .catch((e) => {
+        throw e;
+      });
+    return res;
+  } catch (error) {
+    console.error('error :', error);
+  }
 };

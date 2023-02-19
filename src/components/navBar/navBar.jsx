@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategoriesRequest } from '../../services/category-service';
 import './navBar.css';
 
-export default function NavBar({ setEventListIsOpen }) {
+export default function NavBar() {
   const { categories, category } = useSelector((state) => state);
   const getCategories = async () => {
     const categories = await getCategoriesRequest();
@@ -33,7 +33,6 @@ export default function NavBar({ setEventListIsOpen }) {
               key={categoryy.id}
               onClick={() => {
                 dispatch({ type: 'SET_CATEGORY', payload: { ...categoryy } });
-                setEventListIsOpen(false);
               }}
             >
               {categoryy.displayName}

@@ -10,11 +10,14 @@ import { ImageCloud } from '../ImageCloud/ImageCloud';
 import { InputLabel } from '../inputLabel/inputLabel';
 import SignatureCanvas from 'react-signature-canvas';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-export default function EventList({ setEventListIsOpen }) {
+export default function EventList() {
   const { eventData, eventInfo } = useSelector((state) => state);
   const [products, setProducts] = useState({});
+  const [errorsInputs, setErrorsInputs] = useState({});
   let signCanvas = useRef(null);
+  const navigate = useNavigate();
 
   const today = () => {
     let date = new Date();
@@ -92,6 +95,9 @@ export default function EventList({ setEventListIsOpen }) {
       const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
       if (reg.test(value)) {
         eventInfoInputs[name] = value;
+        removeError(name);
+      } else {
+        setErrorsInputs((prev) => ({ ...prev, [name]: 'אימייל לא חוקי' }));
       }
       saveEventInfo();
       return;
@@ -100,6 +106,12 @@ export default function EventList({ setEventListIsOpen }) {
     saveEventInfo();
   };
 
+  const removeError = (errorName) => {
+    const newErrorsInputs = Object.keys(errorsInputs).filter(
+      (errorNameInput) => errorNameInput !== errorName
+    );
+    setErrorsInputs(newErrorsInputs);
+  };
   const removeBtn = (product) => {
     const eventDataNew = removeFromEvent(product);
     dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventDataNew } });
@@ -119,8 +131,8 @@ export default function EventList({ setEventListIsOpen }) {
     sessionStorage.clear();
     toast.success('האירוע נמחק בהצלחה !');
     setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+      navigate('/');
+    }, 2500);
   };
   return page === 1 ? (
     <Fragment>
@@ -129,7 +141,12 @@ export default function EventList({ setEventListIsOpen }) {
           <div className="label-input">
             <h1>פרטי האירוע</h1>
           </div>
-          <div className="input-area select-area"></div>
+          <div className="input-area select-area">
+            {Object.keys(errorsInputs).length > 0 &&
+              Object.keys(errorsInputs).map((error) => {
+                return <p>*{errorsInputs[error]}</p>;
+              })}
+          </div>
           <InputLabel
             valueInput={eventInfoInputs}
             onChange={handelChange}
@@ -340,7 +357,7 @@ export default function EventList({ setEventListIsOpen }) {
             labelText={`הערות :`}
           />
           <div className="label-input label-input-sign">
-            חתימה דיגיטלית ב touch :
+            <p>חתימה דיגיטלית ב touch :</p>
             <button
               className="sign-btn"
               onClick={() => {
@@ -378,6 +395,8 @@ export default function EventList({ setEventListIsOpen }) {
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingBottom: '3rem',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
           }}
         >
           <button className="sign-btn" onClick={() => removeEventInfo()}>
@@ -391,6 +410,9 @@ export default function EventList({ setEventListIsOpen }) {
             className="sign-btn"
           >
             שמור
+          </button>
+          <button onClick={() => navigate('/')} className="sign-btn">
+            חזרה לתפריט
           </button>
           <button
             className="sign-btn"
@@ -437,21 +459,21 @@ export default function EventList({ setEventListIsOpen }) {
               ))}
             </div>
             <div className="btns-container">
-              <button
-                className="sign-btn"
-                style={{ marginTop: '50px' }}
-                onClick={() => setPage(1)}
-              >
+              <button className="sign-btn" onClick={() => setPage(1)}>
                 אחורה
+              </button>
+              <button onClick={() => navigate('/')} className="sign-btn">
+                חזרה לתפריט
               </button>
               <button
                 className="sign-btn"
-                style={{ marginTop: '50px' }}
                 onClick={() => {
                   sendEvent({ eventInfoInputs })
-                    .then(() => {
-                      setEventListIsOpen(false);
-                      toast.success('האירוע נשלח בהצלחה');
+                    .then((result) => {
+                      if (result.status === 200) {
+                        toast.success('האירוע נשלח בהצלחה');
+                        navigate('/');
+                      }
                     })
                     .catch(() => toast.error('ההזמנה נכשלה'));
                 }}

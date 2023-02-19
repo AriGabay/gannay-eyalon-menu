@@ -18,6 +18,10 @@
   font-size: 20px;
 }
 .input-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 10px;
   border-radius: 20px;
   font-size: medium;
@@ -25,6 +29,16 @@
   align-self: stretch;
   font-size: 20px;
   text-align: center;
+}
+.input-area textarea {
+  width: 100%;
+  max-height: 100%;
+}
+.input-area :first-child {
+  margin-right: 10px;
+}
+.input-area :last-child {
+  margin-left: 10px;
 }
 .sign-btn {
   color: #f5efdf;
@@ -34,11 +48,21 @@
   cursor: pointer;
   border-radius: 20px;
   padding: 10px;
+  margin-bottom: 2.2rem;
 }
 .btns-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.btns-container :last-child {
+  margin-left: 1.1rem;
+}
+.btns-container :first-child {
+  margin-right: 1.1rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -67,6 +91,10 @@
   }
   .label-input-sign {
     margin-top: 35px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .sign-canvas {
     margin-top: 35px;

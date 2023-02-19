@@ -19,6 +19,7 @@ export const InputLabel = ({
         </label>
       ) : (
         <div
+          className="label-input"
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -26,7 +27,7 @@ export const InputLabel = ({
             alignItems: 'center',
           }}
         >
-          <label className="label-input" htmlFor={inputId}>
+          <label htmlFor={inputId}>
             {labelText}
             <br />
             {secendLabel}
