@@ -146,7 +146,12 @@ export const UpdateMenu = () => {
                   <div className="flex-container">
                     <div className="title-sign">
                       <label className="label-input">חתימה :</label>
-                      <button onClick={() => signCanvas.current.clear()}>
+                      <button
+                        onClick={() => {
+                          signCanvas.current.clear();
+                          eventInfo.sign = '';
+                        }}
+                      >
                         נקוי
                       </button>
                     </div>

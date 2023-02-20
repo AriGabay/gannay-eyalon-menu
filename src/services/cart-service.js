@@ -82,13 +82,7 @@ export const sendEvent = async (eventData) => {
     const eventInfo = JSON.parse(eventInfoStr);
     const hashTitle = JSON.parse(hashTitleStr);
     const res = await axios
-      .post(
-        BASE_URL,
-        { eventDetails, ...eventData, eventInfo, hashTitle },
-        {
-          responseType: 'stream',
-        }
-      )
+      .post(BASE_URL, { eventDetails, ...eventData, eventInfo, hashTitle })
       .catch((error) => {
         throw error;
       });
@@ -108,13 +102,7 @@ export const updateEvent = async (
 ) => {
   try {
     const res = await axios
-      .put(
-        BASE_URL,
-        { eventDetails, eventInfo, hashTitle, eventDetailsId },
-        {
-          responseType: 'stream',
-        }
-      )
+      .put(BASE_URL, { eventDetails, eventInfo, hashTitle, eventDetailsId })
       .catch((e) => {
         throw e;
       });

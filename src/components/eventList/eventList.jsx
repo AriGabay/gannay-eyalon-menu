@@ -37,7 +37,7 @@ export default function EventList() {
     };
   }, [eventInfo]);
 
-  const hashTitle = { today: 'תאריך ביצוע ההזמנה : ' };
+  const hashTitle = { today: 'תאריך ביצוע ההזמנה : ', sign: 'חתימה : ' };
   const dispatch = useDispatch();
   useEffect(() => {
     if (
