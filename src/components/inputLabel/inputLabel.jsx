@@ -11,6 +11,14 @@ export const InputLabel = ({
   if (inputId === 'timeOfStartEvent') {
     inputType = 'time';
   }
+  if (inputId === 'lastUpdateBy') {
+    const el = document.getElementById('lastUpdateBy');
+    if (el) {
+      el.disabled = true;
+      el.style.color = 'white';
+      labelText = 'עדכון על ידי : ';
+    }
+  }
   return (
     <React.Fragment>
       {!secendLabel.length ? (

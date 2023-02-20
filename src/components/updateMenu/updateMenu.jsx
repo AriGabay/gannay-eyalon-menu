@@ -5,6 +5,7 @@ import { getProducts } from '../../services/product-service';
 import Select from 'react-select';
 import { updateEvent } from '../../services/cart-service';
 import SignatureCanvas from 'react-signature-canvas';
+import jwt from 'jwt-decode';
 import './updateMenu.css';
 
 export const UpdateMenu = () => {
@@ -19,6 +20,10 @@ export const UpdateMenu = () => {
   let signCanvas = useRef(null);
 
   useEffect(() => {
+    const { token } = JSON.parse(sessionStorage.getItem('user'));
+    const user = jwt(token);
+    eventInfo.lastUpdateBy = user.userName;
+    hashTitle.lastUpdateBy = 'עדכון על ידי : ';
     const getEventsDetails = async () => {
       const eventsDetails = await gnEventDetails.getGnEventsDetails();
       setEventsDetails([...eventsDetails]);
@@ -27,6 +32,7 @@ export const UpdateMenu = () => {
     };
 
     getEventsDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -37,13 +43,14 @@ export const UpdateMenu = () => {
       if (!Object.keys(eventSelected[0]).length) return;
       const localEventInfo = JSON.parse(eventSelected[0].eventInfo);
       const localHashTitle = JSON.parse(eventSelected[0].hashTitle);
+      // localEventInfo.lastUpdateBy = '';
       Object.keys(localHashTitle).forEach((title) => {
         if (!localEventInfo[title]) {
           localEventInfo[title] = '';
         }
       });
-      setEventInfo(localEventInfo);
-      setHashTitle(localHashTitle);
+      setEventInfo((prev) => ({ ...prev, ...localEventInfo }));
+      setHashTitle((prev) => ({ ...prev, ...localHashTitle }));
       setEventDetails(JSON.parse(eventSelected[0].eventDetails));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
