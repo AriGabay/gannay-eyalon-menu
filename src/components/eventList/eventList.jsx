@@ -15,7 +15,9 @@ import { useNavigate } from 'react-router-dom';
 export default function EventList() {
   const { eventData, eventInfo } = useSelector((state) => state);
   const [products, setProducts] = useState({});
-  const [errorsInputs, setErrorsInputs] = useState({});
+  const [errorsInputs, setErrorsInputs] = useState({
+    createBy: 'חובה לכתוב נוצר על ידי ',
+  });
   let signCanvas = useRef(null);
   const navigate = useNavigate();
 
@@ -79,11 +81,17 @@ export default function EventList() {
       const data = sessionStorage.getItem('eventInfo');
       const parseData = JSON.parse(data);
       if (data && Object.keys(parseData).length) {
+        if (parseData.createBy?.length) {
+          removeError('createBy');
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
         eventInfoInputs = { ...parseData };
         saveEventInfo();
       }
     }
+    return () => {
+      saveEventInfo();
+    };
   }, []);
   const handelChange = ({ target }) => {
     let { name, value } = target;
@@ -93,6 +101,7 @@ export default function EventList() {
       saveEventInfo();
       return;
     }
+
     if (name === 'email') {
       // eslint-disable-next-line no-useless-escape
       const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -102,8 +111,12 @@ export default function EventList() {
       } else {
         setErrorsInputs((prev) => ({ ...prev, [name]: 'אימייל לא חוקי' }));
       }
+
       saveEventInfo();
       return;
+    }
+    if (name === 'createBy') {
+      removeError(name);
     }
     eventInfoInputs[name] = value;
     saveEventInfo();
@@ -132,8 +145,10 @@ export default function EventList() {
   };
   const removeEventInfo = () => {
     sessionStorage.clear();
+    eventInfoInputs = {};
     toast.success('האירוע נמחק בהצלחה !');
     setTimeout(() => {
+      saveEventInfo();
       navigate('/');
     }, 2500);
   };
