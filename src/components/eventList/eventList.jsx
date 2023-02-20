@@ -37,7 +37,10 @@ export default function EventList() {
     };
   }, [eventInfo]);
 
-  const hashTitle = { today: 'תאריך ביצוע ההזמנה : ', sign: 'חתימה : ' };
+  const hashTitle = {
+    today: 'תאריך ביצוע ההזמנה : ',
+    sign: 'חתימה : ',
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     if (
@@ -223,6 +226,13 @@ export default function EventList() {
             אנשי קשר
           </div>
           <div className="input-area select-area"></div>
+          <InputLabel
+            valueInput={eventInfoInputs}
+            onChange={handelChange}
+            inputId={'createBy'}
+            inputType={'text'}
+            labelText="נוצר על ידי - מטעם האולם :"
+          />
           <InputLabel
             valueInput={eventInfoInputs}
             onChange={handelChange}
