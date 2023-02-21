@@ -78,7 +78,7 @@
   max-width: 25rem;
 }
 .image-selected img {
-  max-width: 25rem;
+  max-width: 20rem;
 }
 .img-selected {
   border-radius: 25px;
@@ -116,13 +116,15 @@
 
 @media only screen and (max-width: 950px) {
   .modal {
-    min-width: 70%;
+    min-width: 85%;
+    min-height: 90%;
   }
 }
 
 @media only screen and (max-width: 650px) {
   .modal {
     min-width: 80%;
+    min-height: unset;
   }
   #comments-selected-input {
     width: 200px;
