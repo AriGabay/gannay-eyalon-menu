@@ -73,8 +73,8 @@
 .image-selected {
   align-self: stretch;
   grid-area: image-selected;
-  max-height: 15.5rem;
   justify-self: center;
+  max-height: 20.5rem;
   max-width: 25rem;
 }
 .image-selected img {
@@ -82,7 +82,7 @@
 }
 .img-selected {
   border-radius: 25px;
-  max-height: 250px;
+  max-height: 100%;
   object-fit: contain;
 }
 
