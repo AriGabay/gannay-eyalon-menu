@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
     const userLogin = await authService.login(userDetails);
     if (userLogin.token) {
-      navigate('/admin');
+      navigate('/');
     }
   };
   return (

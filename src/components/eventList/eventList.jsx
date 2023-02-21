@@ -11,6 +11,7 @@ import { InputLabel } from '../inputLabel/inputLabel';
 import SignatureCanvas from 'react-signature-canvas';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 export default function EventList() {
   const { eventData, eventInfo } = useSelector((state) => state);
@@ -72,6 +73,19 @@ export default function EventList() {
     });
   }, [eventData]);
   useEffect(() => {
+    const dataFromSession = sessionStorage.getItem('user');
+    if (dataFromSession === null) {
+      navigate('/login');
+    }
+    const { token } = JSON.parse(dataFromSession);
+    try {
+      const user = jwtDecode(token);
+      eventInfoInputs['createBy'] = user.userName;
+    } catch (error) {
+      console.log(error?.message);
+      navigate('/login');
+    }
+
     const labels = document.getElementsByTagName('label');
     Array.from(labels).forEach((label) => {
       hashTitle[label.htmlFor] = label.innerText;
