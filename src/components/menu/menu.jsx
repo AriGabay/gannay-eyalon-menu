@@ -29,7 +29,7 @@ export default function MenuComp() {
     });
     dispatch({
       type: 'SET_SELECTED',
-      payload: { ...product },
+      payload: { ...product, photos: JSON.parse(product.photos) },
     });
   };
 

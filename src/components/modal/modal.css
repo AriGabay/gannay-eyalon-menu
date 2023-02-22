@@ -73,9 +73,14 @@
 .image-selected {
   align-self: stretch;
   grid-area: image-selected;
-  justify-self: center;
   max-height: 20.5rem;
-  max-width: 25rem;
+  max-width: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  justify-self: stretch;
+  margin: 0 auto;
 }
 .image-selected img {
   max-width: 25rem;
@@ -86,6 +91,9 @@
   object-fit: contain;
 }
 
+.slider .animated {
+  transform: unset !important;
+}
 .description-seleted {
   justify-self: start;
   align-self: start;
@@ -109,14 +117,53 @@
   font-size: 1.375rem;
 }
 #comments-selected-input {
-  width: 300px;
-  height: 90px;
+  width: min-content;
+  height: min-content;
   margin-top: 20px;
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: unset;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-pagination-bullet-active {
+  background-color: #f5efdf !important;
+}
+.swiper-button-prev {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.swiper-button-next {
+  cursor: pointer;
+  margin-right: 1rem;
+}
 @media only screen and (max-width: 950px) {
   .modal {
     min-width: 85%;
+  }
+  .swiper-button-prev {
+    display: none;
+  }
+  .swiper-button-next {
+    display: none;
   }
 }
 

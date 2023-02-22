@@ -43,7 +43,6 @@ export const UpdateMenu = () => {
       if (!Object.keys(eventSelected[0]).length) return;
       const localEventInfo = JSON.parse(eventSelected[0].eventInfo);
       const localHashTitle = JSON.parse(eventSelected[0].hashTitle);
-      // localEventInfo.lastUpdateBy = '';
       Object.keys(localHashTitle).forEach((title) => {
         if (!localEventInfo[title]) {
           localEventInfo[title] = '';
