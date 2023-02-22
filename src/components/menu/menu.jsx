@@ -27,6 +27,9 @@ export default function MenuComp() {
       type: 'SET_MODAL_IS_OPEN',
       payload: true,
     });
+    if (!product.photos) {
+      product.photos = {};
+    }
     dispatch({
       type: 'SET_SELECTED',
       payload: { ...product, photos: JSON.parse(product.photos) },
