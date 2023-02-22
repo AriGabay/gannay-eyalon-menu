@@ -30,6 +30,13 @@ export default function MenuComp() {
     if (!product.photos) {
       product.photos = {};
     }
+    if (typeof product.photos === 'object') {
+      dispatch({
+        type: 'SET_SELECTED',
+        payload: { ...product, photos: { ...product.photos } },
+      });
+      return;
+    }
     dispatch({
       type: 'SET_SELECTED',
       payload: { ...product, photos: JSON.parse(product.photos) },
