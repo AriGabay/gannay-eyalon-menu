@@ -94,8 +94,6 @@ export default function Modal() {
                         <SwiperSlide
                           style={{
                             background: 'transparent',
-                            maxWidth: '400px',
-                            width: 'auto',
                           }}
                         >
                           <ImageCloud
