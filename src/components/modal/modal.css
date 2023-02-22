@@ -74,13 +74,12 @@
   align-self: stretch;
   grid-area: image-selected;
   max-height: 20.5rem;
-  max-width: 30rem;
+  min-width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row-reverse;
   justify-self: stretch;
-  margin: 0 auto;
 }
 .image-selected img {
   max-width: 25rem;
