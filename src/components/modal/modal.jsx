@@ -91,7 +91,13 @@ export default function Modal() {
                     Object.keys(selected.photos).length > 0 &&
                     Object.keys(selected.photos).map((photo, index) => {
                       return (
-                        <SwiperSlide style={{ background: 'transparent' }}>
+                        <SwiperSlide
+                          style={{
+                            background: 'transparent',
+                            maxWidth: '400px',
+                            width: 'auto',
+                          }}
+                        >
                           <ImageCloud
                             alt={`galery-img-${index}`}
                             ClassName="img-selected"
