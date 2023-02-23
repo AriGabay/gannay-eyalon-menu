@@ -2,11 +2,13 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { countProductsByCategory as countProductsByCategoryFunc } from '../../services/cart-service';
 import { getCategoriesRequest } from '../../services/category-service';
 import './navBar.css';
 
 export default function NavBar() {
-  const { categories, category } = useSelector((state) => state);
+  const { categories, category, countProductsByCategory, eventData } =
+    useSelector((state) => state);
   const getCategories = async () => {
     const categories = await getCategoriesRequest();
     if (categories?.length) {
@@ -18,10 +20,19 @@ export default function NavBar() {
   useEffect(() => {
     getCategories();
   }, []);
+  useEffect(() => {
+    const countProducts = countProductsByCategoryFunc(eventData);
+
+    dispatch({
+      type: 'SET_COUNT_PRODUCTS_BY_CATEGORY',
+      payload: { ...countProducts },
+    });
+  }, [eventData]);
 
   return (
     <ul className="nav-bar">
       {categories.length > 0 &&
+        Object.keys(countProductsByCategory).length &&
         categories.map((categoryy) => {
           return (
             <li
@@ -36,6 +47,16 @@ export default function NavBar() {
               }}
             >
               {categoryy.displayName}
+              <div className="category-count-text">
+                <br />
+                <p>נוספו לאירוע : </p>
+                <p style={{ textDecoration: 'underline 1.5px' }}>
+                  {countProductsByCategory[categoryy.id]
+                    ? countProductsByCategory[categoryy.id]
+                    : 0}{' '}
+                  פריטים
+                </p>
+              </div>
             </li>
           );
         })}

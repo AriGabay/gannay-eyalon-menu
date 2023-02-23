@@ -74,6 +74,24 @@ export const countProducts = (eventData) => {
   );
   return count;
 };
+export const countProductsByCategory = (eventData) => {
+  let countProducts = {};
+  if (!eventData || !Object.keys(eventData).length) return 0;
+  Object.keys(eventData).forEach((categoryId) => {
+    if (Object.keys(eventData[categoryId]).length) {
+      Object.keys(eventData[categoryId]).forEach((productId) => {
+        if (eventData[categoryId][productId]) {
+          if (!countProducts[categoryId] && countProducts[categoryId] !== 1) {
+            countProducts[categoryId] = 1;
+          } else {
+            countProducts[categoryId]++;
+          }
+        }
+      });
+    }
+  });
+  return countProducts;
+};
 export const sendEvent = async (eventData) => {
   try {
     const eventDetails = getEvent();
