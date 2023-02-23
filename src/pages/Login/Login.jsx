@@ -44,6 +44,7 @@ function Login() {
           placeholder="סיסמה"
           className="login-inputs"
           onChange={handelChange}
+          type="password"
         />
         <input
           type="submit"
