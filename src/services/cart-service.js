@@ -104,12 +104,14 @@ export const sendEvent = async (eventData) => {
       .catch((error) => {
         throw error;
       });
-    if (res.status === 200) {
+    console.log('res :', res);
+    if (res?.status === 200) {
       sessionStorage.clear();
     }
     return res;
   } catch (error) {
     console.error('error :', error);
+    throw error;
   }
 };
 export const updateEvent = async (

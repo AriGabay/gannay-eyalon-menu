@@ -509,12 +509,20 @@ export default function EventList() {
                 onClick={() => {
                   sendEvent({ eventInfoInputs })
                     .then((result) => {
+                      console.log('result :', result);
+                      if (!result) {
+                        toast.error('ההזמנה נכשלה' + `${result}`);
+                        return;
+                      }
                       if (result.status === 200) {
                         toast.success('האירוע נשלח בהצלחה');
                         navigate('/');
                       }
                     })
-                    .catch((e) => toast.error('ההזמנה נכשלה' + `${e}`));
+                    .catch((e) => {
+                      console.log('error:', e);
+                      toast.error('ההזמנה נכשלה' + `${e.message}`);
+                    });
                 }}
               >
                 שלח
