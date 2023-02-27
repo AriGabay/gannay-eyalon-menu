@@ -514,7 +514,7 @@ export default function EventList() {
                         navigate('/');
                       }
                     })
-                    .catch(() => toast.error('ההזמנה נכשלה'));
+                    .catch((e) => toast.error('ההזמנה נכשלה' + `${e}`));
                 }}
               >
                 שלח
