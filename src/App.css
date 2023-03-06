@@ -78,6 +78,7 @@
     grid-area: screen;
     align-self: stretch;
     margin-bottom: 50px;
+    margin-top: 3rem;
   }
   .nav-bar {
     color: #f5efdf;

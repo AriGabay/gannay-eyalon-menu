@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductIdsCart } from '../../services/cart-service';
 import { getProducts } from '../../services/product-service';
-import AddBtn from '../addBtn/addBtn';
 import { ImageCloud } from '../ImageCloud/ImageCloud';
 import './menu.css';
 
@@ -47,7 +46,7 @@ export default function MenuComp() {
     <div>
       {products.length && Object.keys(category).length > 0 && (
         <div>
-          <h1 className="menu-type-title">{category.displayName}</h1>
+          {/* <h1 className="menu-type-title">{category.displayName}</h1> */}
           <div className="menu">
             {products.length > 0 &&
               products.map((product) => {
@@ -68,9 +67,6 @@ export default function MenuComp() {
                       }`}
                     >
                       <div className="product-name">{product.productName}</div>
-                      <div className="product-description">
-                        {product.description}
-                      </div>
                       <div className="product-img-container">
                         <ImageCloud
                           alt={product.productName}
@@ -78,9 +74,6 @@ export default function MenuComp() {
                           imageId={product.imgUrl}
                         />
                       </div>
-                      {!(product.autoAdd === true) && (
-                        <AddBtn onClick={() => onClickProduct(product)} />
-                      )}
                     </div>
                   </div>
                 );

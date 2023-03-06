@@ -109,7 +109,6 @@ export default function EventList() {
   }, []);
   const handelChange = ({ target }) => {
     let { name, value } = target;
-    if (!value?.length) return;
     if (name === 'eventDate') {
       eventInfoInputs[name] = String(value).split('-').reverse().join('/');
       saveEventInfo();
@@ -372,7 +371,7 @@ export default function EventList() {
             onChange={handelChange}
             inputId={'knightsTables'}
             inputType={'text'}
-            labelText={`שולחנות אבירים :`}
+            labelText={`מספר שולחנות אבירים:`}
           />
           <InputLabel
             valueInput={eventInfoInputs}
@@ -451,7 +450,7 @@ export default function EventList() {
             שמור
           </button>
           <button onClick={() => navigate('/')} className="sign-btn">
-            חזרה לתפריט
+            חזרה לעמוד הראשי
           </button>
           <button
             className="sign-btn"
@@ -460,7 +459,7 @@ export default function EventList() {
               setPage(2);
             }}
           >
-            עבור עמוד
+            שלב הבא
           </button>
         </div>
       </div>
@@ -502,16 +501,15 @@ export default function EventList() {
                 אחורה
               </button>
               <button onClick={() => navigate('/')} className="sign-btn">
-                חזרה לתפריט
+                חזרה לעמוד הראשי
               </button>
               <button
                 className="sign-btn"
                 onClick={() => {
                   sendEvent({ eventInfoInputs })
                     .then((result) => {
-                      console.log('result :', result);
                       if (!result) {
-                        toast.error('ההזמנה נכשלה' + `${result}`);
+                        toast.error(`ההזמנה נכשלה`);
                         return;
                       }
                       if (result.status === 200) {
@@ -521,7 +519,7 @@ export default function EventList() {
                     })
                     .catch((e) => {
                       console.log('error:', e);
-                      toast.error('ההזמנה נכשלה' + `${e.message}`);
+                      toast.error('ההזמנה נכשלה');
                     });
                 }}
               >

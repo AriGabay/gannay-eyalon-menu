@@ -52,7 +52,7 @@ function Menu() {
         {isAdmin && (
           <div className="admin-btns-container">
             <div
-              style={{ color: 'wheat' }}
+              style={{ color: '#f5efdf' }}
               onClick={(e) => {
                 e.stopPropagation();
                 navigate('/admin');
@@ -61,7 +61,7 @@ function Menu() {
               עדכון תפריט
             </div>
             <h3
-              style={{ cursor: 'pointer', color: 'wheat' }}
+              style={{ cursor: 'pointer', color: '#f5efdf' }}
               onClick={(e) => {
                 e.stopPropagation();
                 sessionStorage.removeItem('user');

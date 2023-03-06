@@ -46,7 +46,7 @@ export default function NavBar() {
                 dispatch({ type: 'SET_CATEGORY', payload: { ...categoryy } });
               }}
             >
-              {categoryy.displayName}
+              <div style={{ fontSize: '1.5rem' }}>{categoryy.displayName}</div>
               <div className="category-count-text">
                 <br />
                 <p>נוספו לאירוע : </p>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { AdvancedImage, placeholder, lazyload } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { quality } from '@cloudinary/url-gen/actions/delivery';
-import { scale } from '@cloudinary/url-gen/actions/resize';
 
 export function ImageCloud({
   alt,
@@ -28,7 +27,7 @@ export function ImageCloud({
     imageId = 'logo-gold_3_wfioim';
     myImage = cld.image(imageId);
   }
-  myImage.resize(scale().width(400).height(400));
+  // myImage.resize(scale().width(400).height(400));
   myImage.delivery(quality('auto:best'));
 
   return (

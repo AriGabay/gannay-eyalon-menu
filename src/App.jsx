@@ -61,7 +61,7 @@ function App() {
         toastStyle={{ background: '#f4eddc', margin: '0 50px' }}
       />
       <a href="/#" className="top">
-        חזרה לתחילת העמוד &#8593;
+        לתחילת העמוד &#8593;
       </a>
     </div>
   );
