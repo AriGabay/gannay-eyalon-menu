@@ -30,7 +30,6 @@ const router = createBrowserRouter([
     element: <EventList />,
   },
 ]);
-console.log('router', window.location.href);
 
 function App() {
   const { modalIsOpen } = useSelector((state) => state);
