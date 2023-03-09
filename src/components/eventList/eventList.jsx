@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo, useRef } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,9 +16,8 @@ import jwtDecode from 'jwt-decode';
 export default function EventList() {
   const { eventData, eventInfo } = useSelector((state) => state);
   const [products, setProducts] = useState({});
-  const [errorsInputs, setErrorsInputs] = useState({
-    createBy: 'חובה לכתוב נוצר על ידי ',
-  });
+  const [errorsInputs, setErrorsInputs] = useState({});
+  const [user, setUser] = useState({});
   let signCanvas = useRef(null);
   const navigate = useNavigate();
 
@@ -31,14 +30,12 @@ export default function EventList() {
     return date;
   };
   const [page, setPage] = useState(1);
-  let eventInfoInputs = useMemo(() => {
-    return {
-      today: today(),
-      ...eventInfo,
-      separationArea: 'לא',
-      separationTables: 'לא',
-    };
-  }, [eventInfo]);
+  const [eventInfoInputs, setEventInfoInputs] = useState({
+    today: today(),
+    separationArea: 'לא',
+    separationTables: 'לא',
+    ...eventInfo,
+  });
 
   const hashTitle = {
     today: 'תאריך ביצוע ההזמנה : ',
@@ -59,6 +56,7 @@ export default function EventList() {
       });
     }
   }, [signCanvas, eventInfoInputs]);
+
   useEffect(() => {
     const copy = {};
     Object.keys(eventData).forEach((categoryId) => {
@@ -72,67 +70,86 @@ export default function EventList() {
       });
     });
   }, [eventData]);
-  useEffect(() => {
-    const dataFromSession = sessionStorage.getItem('user');
-    if (dataFromSession === null) {
-      navigate('/login');
-    }
-    const { token } = JSON.parse(dataFromSession);
+
+  const isLogin = async () => {
     try {
-      const user = jwtDecode(token);
-      eventInfoInputs['createBy'] = user.userName;
+      const userFromStorage = sessionStorage.getItem('user');
+      if (userFromStorage === null) {
+        navigate('/login');
+      }
+      const { token } = JSON.parse(userFromStorage);
+      const userDecode = jwtDecode(token);
+      setUser({ ...userDecode });
     } catch (error) {
       console.log(error?.message);
       navigate('/login');
     }
+  };
+  useEffect(() => {
+    if (user.userName) {
+      setEventInfoInputs({ ...eventInfoInputs, createBy: user.userName });
+      saveEventInfo({ ...eventInfoInputs, createBy: user.userName });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
+  useEffect(() => {
     const labels = document.getElementsByTagName('label');
     Array.from(labels).forEach((label) => {
       hashTitle[label.htmlFor] = label.innerText;
     });
     sessionStorage.setItem('hashTitle', JSON.stringify(hashTitle));
-    if (!Object.keys(eventInfo).length) {
-      const data = sessionStorage.getItem('eventInfo');
-      const parseData = JSON.parse(data);
-      if (data && Object.keys(parseData).length) {
+    if (Object.keys(eventInfo).length <= 2) {
+      let dataFromStorage = sessionStorage.getItem('eventInfo');
+      if (
+        !dataFromStorage ||
+        !dataFromStorage.length ||
+        dataFromStorage === 'undefined'
+      ) {
+        dataFromStorage = {
+          today: today(),
+          separationArea: 'לא',
+          separationTables: 'לא',
+        };
+      } else {
+        dataFromStorage = JSON.parse(dataFromStorage);
+      }
+      const parseData = { ...eventInfo, ...dataFromStorage };
+      if (dataFromStorage && parseData && Object.keys(parseData).length) {
         if (parseData.createBy?.length) {
           removeError('createBy');
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        eventInfoInputs = { ...parseData };
-        saveEventInfo();
+        setEventInfoInputs({ ...parseData });
+        saveEventInfo({ ...parseData });
       }
     }
-    return () => {
-      saveEventInfo();
-    };
+    isLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const handelChange = ({ target }) => {
+    let newData = { ...eventInfoInputs };
     let { name, value } = target;
     if (name === 'eventDate') {
-      eventInfoInputs[name] = String(value).split('-').reverse().join('/');
-      saveEventInfo();
-      return;
-    }
-
-    if (name === 'email') {
+      newData[name] = String(value).split('-').reverse().join('/');
+    } else if (name === 'email') {
       // eslint-disable-next-line no-useless-escape
       const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
       if (reg.test(value)) {
-        eventInfoInputs[name] = value;
+        newData[name] = value;
         removeError(name);
       } else {
         setErrorsInputs((prev) => ({ ...prev, [name]: 'אימייל לא חוקי' }));
       }
-
-      saveEventInfo();
+      setEventInfoInputs({ ...newData });
+      saveEventInfo({ ...newData });
       return;
+    } else {
+      newData[name] = value;
     }
-    if (name === 'createBy') {
-      removeError(name);
-    }
-    eventInfoInputs[name] = value;
-    saveEventInfo();
+    removeError(name);
+    setEventInfoInputs({ ...newData });
+    saveEventInfo({ ...newData });
   };
 
   const removeError = (errorName) => {
@@ -141,6 +158,7 @@ export default function EventList() {
     );
     setErrorsInputs(newErrorsInputs);
   };
+
   const removeBtn = (product) => {
     const eventDataNew = removeFromEvent(product);
     dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventDataNew } });
@@ -152,19 +170,69 @@ export default function EventList() {
     setProducts({ ...newProducts });
     toast.success('הוסר מהאירוע');
   };
-  const saveEventInfo = () => {
-    dispatch({ type: 'SET_EVENT_INFO', payload: { ...eventInfoInputs } });
-    sessionStorage.setItem('eventInfo', JSON.stringify(eventInfoInputs));
+
+  const saveEventInfo = (dataToSave) => {
+    sessionStorage.setItem('eventInfo', JSON.stringify(dataToSave));
+    dispatch({ type: 'SET_EVENT_INFO', payload: { ...dataToSave } });
   };
+
   const removeEventInfo = () => {
+    const user = sessionStorage.getItem('user');
     sessionStorage.clear();
-    eventInfoInputs = {};
+    sessionStorage.setItem('user', user);
     toast.success('האירוע נמחק בהצלחה !');
     setTimeout(() => {
-      saveEventInfo();
+      saveEventInfo({
+        today: today(),
+        separationArea: 'לא',
+        separationTables: 'לא',
+      });
       navigate('/');
     }, 2500);
   };
+
+  const sendEventAndValidate = () => {
+    if (!eventInfoInputs.eventDate) {
+      toast.error('חובה להזין תאריך אירוע');
+      setErrorsInputs((prevErrors) => ({
+        ...prevErrors,
+        eventDate: 'חובה להזין את תאריך האירוע',
+      }));
+      return;
+    }
+    if (!eventInfoInputs.createBy) {
+      toast.error('חובה להזין נוצר על ידי');
+      setErrorsInputs((prevErrors) => ({
+        ...prevErrors,
+        createBy: 'חובה להזין נוצר על ידי',
+      }));
+      return;
+    }
+    if (!eventInfoInputs.timeOfStartEvent) {
+      toast.error('חובה להזין שעת הגעת האורחים');
+      setErrorsInputs((prevErrors) => ({
+        ...prevErrors,
+        timeOfStartEvent: 'חובה להזין שעת הגעת האורחים',
+      }));
+      return;
+    }
+    sendEvent({ eventInfoInputs })
+      .then((result) => {
+        if (!result) {
+          toast.error(`ההזמנה נכשלה`);
+          return;
+        }
+        if (result.status === 200) {
+          toast.success('האירוע נשלח בהצלחה');
+          navigate('/');
+        }
+      })
+      .catch((e) => {
+        console.log('error:', e);
+        toast.error('ההזמנה נכשלה');
+      });
+  };
+
   return page === 1 ? (
     <Fragment>
       <div className="event-list-mobile" style={{ color: 'f5efdf' }}>
@@ -402,7 +470,7 @@ export default function EventList() {
                 if (eventInfoInputs.sign) {
                   const { sign, ...restData } = eventInfoInputs;
                   signCanvas.current.clear();
-                  eventInfoInputs = restData;
+                  setEventInfoInputs({ ...restData });
                 }
                 saveEventInfo();
               }}
@@ -509,23 +577,7 @@ export default function EventList() {
               </button>
               <button
                 className="sign-btn"
-                onClick={() => {
-                  sendEvent({ eventInfoInputs })
-                    .then((result) => {
-                      if (!result) {
-                        toast.error(`ההזמנה נכשלה`);
-                        return;
-                      }
-                      if (result.status === 200) {
-                        toast.success('האירוע נשלח בהצלחה');
-                        navigate('/');
-                      }
-                    })
-                    .catch((e) => {
-                      console.log('error:', e);
-                      toast.error('ההזמנה נכשלה');
-                    });
-                }}
+                onClick={() => sendEventAndValidate()}
               >
                 שלח
               </button>

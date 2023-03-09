@@ -11,7 +11,11 @@ export const InputLabel = ({
   if (inputId === 'timeOfStartEvent') {
     inputType = 'time';
   }
-  if (inputId === 'eventDate') {
+  if (
+    inputId === 'eventDate' &&
+    valueInput[inputId] &&
+    valueInput[inputId].length
+  ) {
     valueInput[inputId] = String(valueInput[inputId])
       .split('/')
       .reverse()

@@ -9,7 +9,6 @@ export default function MenuComp() {
   const dispatch = useDispatch();
   const { products, category, productIdsCart } = useSelector((state) => state);
   const getProductsList = async () => {
-    if (products?.length) return products;
     const { productsReq, eventData } = await getProducts();
     const productIdsCart = getProductIdsCart();
     dispatch({ type: 'SET_EVENT_DATA', payload: { ...eventData } });
