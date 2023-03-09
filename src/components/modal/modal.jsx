@@ -80,12 +80,14 @@ export default function Modal() {
           {Object.keys(selected).length > 0 && (
             <div className="selected">
               <div className="image-selected">
-                <div
-                  className="swiper-button-next"
-                  style={{ color: 'wheat', fontSize: '1.5rem' }}
-                >
-                  {'>'}
-                </div>
+                {Object.keys(selected.photos).length > 1 && (
+                  <div
+                    className="swiper-button-next disable-sclect"
+                    style={{ color: '#f5efdf', fontSize: '1.5rem' }}
+                  >
+                    {'>'}
+                  </div>
+                )}
                 <Swiper {...optionsCarusel}>
                   {selected?.photos &&
                     Object.keys(selected.photos).length > 0 &&
@@ -98,19 +100,21 @@ export default function Modal() {
                         >
                           <ImageCloud
                             alt={`galery-img-${index}`}
-                            ClassName="img-selected"
+                            ClassName="img-selected disable-sclect"
                             imageId={selected.photos[photo]}
                           />
                         </SwiperSlide>
                       );
                     })}
                 </Swiper>
-                <div
-                  className="swiper-button-prev"
-                  style={{ color: 'wheat', fontSize: '1.5rem' }}
-                >
-                  {'<'}
-                </div>
+                {Object.keys(selected.photos).length > 1 && (
+                  <div
+                    className="swiper-button-prev disable-sclect"
+                    style={{ color: '#f5efdf', fontSize: '1.5rem' }}
+                  >
+                    {'<'}
+                  </div>
+                )}
               </div>
               <div className="description-seleted">{selected.description}</div>
               <div className="category-name">{selected.productName}</div>

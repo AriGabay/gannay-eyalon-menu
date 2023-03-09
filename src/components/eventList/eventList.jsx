@@ -170,12 +170,12 @@ export default function EventList() {
       <div className="event-list-mobile" style={{ color: 'f5efdf' }}>
         <div className="grid-inputs">
           <div className="label-input">
-            <h1>פרטי האירוע</h1>
+            <h1>פרטי האירוע :</h1>
           </div>
           <div className="input-area select-area">
             {Object.keys(errorsInputs).length > 0 &&
-              Object.keys(errorsInputs).map((error) => {
-                return <p>*{errorsInputs[error]}</p>;
+              Object.keys(errorsInputs).map((error, index) => {
+                return <p key={index}>*{errorsInputs[error]}</p>;
               })}
           </div>
           <InputLabel
@@ -472,7 +472,10 @@ export default function EventList() {
           <div>
             <div className="menu">
               {Object.keys(products).map((product) => (
-                <div style={{ maxWidth: '270px' }} key={products[product].id}>
+                <div
+                  style={{ maxWidth: '270px', margin: '0 auto' }}
+                  key={products[product].id}
+                >
                   <div className="product">
                     <div className="product-name">
                       {products[product].productName}

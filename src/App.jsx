@@ -30,6 +30,7 @@ const router = createBrowserRouter([
     element: <EventList />,
   },
 ]);
+console.log('router', window.location.href);
 
 function App() {
   const { modalIsOpen } = useSelector((state) => state);
@@ -60,9 +61,9 @@ function App() {
         theme="light"
         toastStyle={{ background: '#f4eddc', margin: '0 50px' }}
       />
-      <a href="/#" className="top">
+      <div className="top" onClick={() => window.scrollTo({ top: 0 })}>
         לתחילת העמוד &#8593;
-      </a>
+      </div>
     </div>
   );
 }

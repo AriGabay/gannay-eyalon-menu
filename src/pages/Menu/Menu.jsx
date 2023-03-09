@@ -51,15 +51,15 @@ function Menu() {
         </div>
         {isAdmin && (
           <div className="admin-btns-container">
-            <div
-              style={{ color: '#f5efdf' }}
+            <p
+              style={{ color: '#f5efdf', fontSize: '18px', fontWeight: 800 }}
               onClick={(e) => {
                 e.stopPropagation();
                 navigate('/admin');
               }}
             >
               עדכון תפריט
-            </div>
+            </p>
             <h3
               style={{ cursor: 'pointer', color: '#f5efdf' }}
               onClick={(e) => {

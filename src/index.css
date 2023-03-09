@@ -1,7 +1,11 @@
+@font-face {
+  font-family: 'Fredoka';
+  src: url('assets/fonts/Fredoka/Fredoka-VariableFont_wdth\,wght.ttf');
+}
 html {
   direction: rtl;
   min-height: 100vh;
-  font-family: 'Noto Serif Hebrew', serif;
+  font-family: 'Fredoka';
   font-size: 16px;
 }
 h1,
@@ -19,7 +23,7 @@ textarea,
 button,
 p {
   direction: rtl;
-  font-family: 'Noto Serif Hebrew', serif;
+  font-family: 'Fredoka';
 }
 body {
   margin: 0;
@@ -30,7 +34,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   min-height: 100vh;
-  font-family: 'Noto Serif Hebrew', serif;
+  font-family: 'Fredoka';
 }
 
 code {

@@ -11,6 +11,12 @@ export const InputLabel = ({
   if (inputId === 'timeOfStartEvent') {
     inputType = 'time';
   }
+  if (inputId === 'eventDate') {
+    valueInput[inputId] = String(valueInput[inputId])
+      .split('/')
+      .reverse()
+      .join('-');
+  }
   if (inputId === 'lastUpdateBy') {
     const el = document.getElementById('lastUpdateBy');
     if (el) {
@@ -19,6 +25,47 @@ export const InputLabel = ({
       labelText = 'עדכון על ידי : ';
     }
   }
+  const customInputByType = () => {
+    if (inputType === 'date' && inputId === 'eventDate') {
+      const date = new Date();
+      date.setDate(date.getDate() + 1);
+      const minDate = date.toISOString().split('T')[0];
+      return (
+        <input
+          min={minDate}
+          name={inputId}
+          onChange={onChange}
+          className="input-area"
+          type={inputType}
+          id={inputId}
+          value={valueInput[inputId] ?? valueInput[inputId]}
+        ></input>
+      );
+    }
+    if (inputType === 'time' || inputType === 'number') {
+      return (
+        <input
+          name={inputId}
+          onChange={onChange}
+          className="input-area"
+          type={inputType}
+          id={inputId}
+          defaultValue={valueInput[inputId] ?? valueInput[inputId]}
+        />
+      );
+    } else {
+      return (
+        <textarea
+          name={inputId}
+          onChange={onChange}
+          className="input-area"
+          type={inputType}
+          id={inputId}
+          defaultValue={valueInput[inputId] ?? valueInput[inputId]}
+        />
+      );
+    }
+  };
   return (
     <React.Fragment>
       {!secendLabel.length ? (
@@ -42,28 +89,7 @@ export const InputLabel = ({
           </label>
         </div>
       )}
-
-      {inputType === 'time' ||
-      inputType === 'date' ||
-      inputType === 'number' ? (
-        <input
-          name={inputId}
-          onChange={onChange}
-          className="input-area"
-          type={inputType}
-          id={inputId}
-          defaultValue={valueInput[inputId] ?? valueInput[inputId]}
-        />
-      ) : (
-        <textarea
-          name={inputId}
-          onChange={onChange}
-          className="input-area"
-          type={inputType}
-          id={inputId}
-          defaultValue={valueInput[inputId] ?? valueInput[inputId]}
-        />
-      )}
+      {customInputByType()}
     </React.Fragment>
   );
 };
