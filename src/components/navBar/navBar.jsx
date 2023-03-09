@@ -42,8 +42,13 @@ export default function NavBar() {
                   : 'nav-link'
               }
               key={categoryy.id}
-              onClick={() => {
+              onClick={(event) => {
                 dispatch({ type: 'SET_CATEGORY', payload: { ...categoryy } });
+                const locationEl = event.target.getBoundingClientRect();
+                if (window.innerWidth <= 1100) return;
+                window.scrollTo({
+                  top: locationEl.y,
+                });
               }}
             >
               <div style={{ fontSize: '1.5rem' }}>{categoryy.displayName}</div>
