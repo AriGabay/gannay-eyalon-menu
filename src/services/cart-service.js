@@ -128,5 +128,6 @@ export const updateEvent = async (
     return res;
   } catch (error) {
     console.error('error :', error);
+    throw error;
   }
 };

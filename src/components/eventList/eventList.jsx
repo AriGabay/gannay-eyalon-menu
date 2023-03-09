@@ -401,6 +401,7 @@ export default function EventList() {
               onClick={() => {
                 if (eventInfoInputs.sign) {
                   const { sign, ...restData } = eventInfoInputs;
+                  signCanvas.current.clear();
                   eventInfoInputs = restData;
                 }
                 saveEventInfo();

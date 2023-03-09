@@ -7,6 +7,7 @@ import { updateEvent } from '../../services/cart-service';
 import SignatureCanvas from 'react-signature-canvas';
 import jwt from 'jwt-decode';
 import './updateMenu.css';
+import { toast } from 'react-toastify';
 
 export const UpdateMenu = () => {
   const [eventsDetails, setEventsDetails] = useState([]);
@@ -114,9 +115,23 @@ export const UpdateMenu = () => {
       eventDetails[product.categoryId][product.id] = { ...product };
     }
     setEventDetails({ ...eventDetails });
+    toast.success('פריט נוסף בהצלחה');
   };
   const updateMenu = async () => {
-    await updateEvent(eventDetails, eventInfo, hashTitle, selectedEventId);
+    try {
+      await updateEvent(
+        eventDetails,
+        eventInfo,
+        hashTitle,
+        selectedEventId
+      ).catch((error) => {
+        throw error;
+      });
+      toast.success('תפריט עודכן');
+    } catch (error) {
+      toast.error('משהו השתבש');
+      console.log('error :', error);
+    }
   };
   return page === 0 ? (
     <div>
@@ -146,10 +161,10 @@ export const UpdateMenu = () => {
           ></Select>
           {eventInfo &&
             Object.keys(eventInfo).length > 0 &&
-            Object.keys(eventInfo).map((item) => {
+            Object.keys(eventInfo).map((item, index) => {
               if (item === 'sign') {
                 return (
-                  <div className="flex-container">
+                  <div className="flex-container" key={index}>
                     <div className="title-sign">
                       <label className="label-input">חתימה :</label>
                       <button
@@ -201,7 +216,7 @@ export const UpdateMenu = () => {
           return Object.keys(eventDetails[categoryId]).map((productId) => {
             const product = eventDetails[categoryId][productId];
             return (
-              <div className="product-container">
+              <div className="product-container" key={productId}>
                 <h2>{product.productName}</h2>
                 {product && (product.comment || product.comment === '') ? (
                   <React.Fragment>
@@ -233,7 +248,10 @@ export const UpdateMenu = () => {
             );
           });
         })}
-      <div className="add-product-container">
+      <div
+        className="add-product-container"
+        style={{ flexDirection: 'column' }}
+      >
         <h1>הוספת פריטים</h1>
         <Select
           styles={{
@@ -245,6 +263,7 @@ export const UpdateMenu = () => {
             container: (baseStyles, state) => ({
               ...baseStyles,
               minWidth: '150px',
+              margin: '15px auto',
             }),
             menu: (baseStyles, state) => ({
               ...baseStyles,

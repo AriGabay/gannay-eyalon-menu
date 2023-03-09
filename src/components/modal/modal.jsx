@@ -97,6 +97,7 @@ export default function Modal() {
                           style={{
                             background: 'transparent',
                           }}
+                          key={index}
                         >
                           <ImageCloud
                             alt={`galery-img-${index}`}

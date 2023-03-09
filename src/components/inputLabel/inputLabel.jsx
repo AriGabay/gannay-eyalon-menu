@@ -21,7 +21,7 @@ export const InputLabel = ({
     const el = document.getElementById('lastUpdateBy');
     if (el) {
       el.disabled = true;
-      el.style.color = 'white';
+      el.style.color = '#f4eddc';
       labelText = 'עדכון על ידי : ';
     }
   }
