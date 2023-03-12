@@ -21,10 +21,10 @@ export const UpdateMenu = () => {
   let signCanvas = useRef(null);
 
   useEffect(() => {
-    const { token } = JSON.parse(sessionStorage.getItem('user'));
-    const user = jwt(token);
-    eventInfo.lastUpdateBy = user.userName;
-    hashTitle.lastUpdateBy = 'עדכון על ידי : ';
+    // const { token } = JSON.parse(sessionStorage.getItem('user'));
+    // const user = jwt(token);
+    // eventInfo.lastUpdateBy = user.userName;
+    // hashTitle.lastUpdateBy = 'עדכון על ידי : ';
     const getEventsDetails = async () => {
       const eventsDetails = await gnEventDetails.getGnEventsDetails();
       setEventsDetails([...eventsDetails]);

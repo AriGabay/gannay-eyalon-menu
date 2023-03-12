@@ -15,15 +15,15 @@ function Menu() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const dataFromSession = sessionStorage.getItem('user');
-    if (dataFromSession === null) {
-      return;
-    }
-    const { token } = JSON.parse(dataFromSession);
-    if (!token) return;
+    // const dataFromSession = sessionStorage.getItem('user');
+    // if (dataFromSession === null) {
+    //   return;
+    // }
+    // const { token } = JSON.parse(dataFromSession);
+    // if (!token) return;
     try {
-      const user = jwtDecode(token);
-      if (!Object.keys(user).length) return;
+      // const user = jwtDecode(token);
+      // if (!Object.keys(user).length) return;
       setIsAdmin(true);
     } catch (e) {
       console.log(e);

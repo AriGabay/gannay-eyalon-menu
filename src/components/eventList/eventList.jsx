@@ -123,7 +123,8 @@ export default function EventList() {
         saveEventInfo({ ...parseData });
       }
     }
-    isLogin();
+    // login page
+    // isLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -171,7 +172,7 @@ export default function EventList() {
     toast.success('הוסר מהאירוע');
   };
 
-  const saveEventInfo = (dataToSave) => {
+  const saveEventInfo = (dataToSave = eventInfoInputs) => {
     sessionStorage.setItem('eventInfo', JSON.stringify(dataToSave));
     dispatch({ type: 'SET_EVENT_INFO', payload: { ...dataToSave } });
   };
@@ -471,8 +472,8 @@ export default function EventList() {
                   const { sign, ...restData } = eventInfoInputs;
                   signCanvas.current.clear();
                   setEventInfoInputs({ ...restData });
+                  saveEventInfo({ ...restData });
                 }
-                saveEventInfo();
               }}
             >
               נקה
@@ -489,7 +490,7 @@ export default function EventList() {
               ref={signCanvas}
               onEnd={(event) => {
                 eventInfoInputs.sign = event.target.toDataURL();
-                saveEventInfo();
+                saveEventInfo({ ...eventInfoInputs });
               }}
             />
           </div>
@@ -511,7 +512,7 @@ export default function EventList() {
           </button>
           <button
             onClick={() => {
-              saveEventInfo();
+              saveEventInfo({ ...eventInfoInputs });
               toast.success('האירוע נשמר בהצלחה !');
             }}
             className="sign-btn"
@@ -524,7 +525,7 @@ export default function EventList() {
           <button
             className="sign-btn"
             onClick={() => {
-              saveEventInfo();
+              saveEventInfo(eventInfoInputs);
               setPage(2);
             }}
           >
